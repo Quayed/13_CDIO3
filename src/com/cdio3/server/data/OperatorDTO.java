@@ -1,4 +1,4 @@
-package com.cdio3.server;
+package com.cdio3.server.data;
 
 /**
  * Operatoer Data Access Objekt
