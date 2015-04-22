@@ -28,11 +28,19 @@ nav{
 	background: #c3c3c3;
 }
 
+nav a{
+	margin-right: 10px;
+	font-size: 15px;	
+}
+
 #content{
 	min-height: 300px;
 	width: 100%;
 }
 
+#content h1{
+	font-size: 50px;
+}
 footer{
 	background: #e3e3e3;
 	text-align: center;
