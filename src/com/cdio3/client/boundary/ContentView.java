@@ -3,7 +3,7 @@ package com.cdio3.client.boundary;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.RootPanel;
 
-public class ContentView extends Composite{
+public class ContentView{
 	private RootPanel content;
 	
 	public void ContentView(RootPanel content){
@@ -14,11 +14,15 @@ public class ContentView extends Composite{
 		
 	}
 	
-	public void showReadOperator(){
+	public void showViewOperator(){
 		
 	}
 	
 	public void showUpdateOperator(){
 		
+	}
+	
+	public void clearContent(){
+		content.clear();
 	}
 }

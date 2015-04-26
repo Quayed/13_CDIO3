@@ -16,10 +16,14 @@ public class MainView {
 	public void showCreateOperator() {
 		// TODO Auto-generated method stub
 		// this should show the create operator panel inside the content view	
+		content.clearContent();
+		content.showCreateOperator();
 	}
 
 	public void showViewOperator() {
 		// TODO Auto-generated method stub
+		content.clearContent();
+		content.showViewOperator();
 		
 	}
 
