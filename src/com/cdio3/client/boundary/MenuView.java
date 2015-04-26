@@ -8,18 +8,19 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 
 public class MenuView extends Composite{
 	private HorizontalPanel menuPanel;
+	private final MainView mainView;
 	
 	public MenuView(MainView main){
 		menuPanel = new HorizontalPanel();
 		initWidget(this.menuPanel);
-		
+		mainView = main;
 		
 		Anchor createOperatorAnchor = new Anchor();
 		createOperatorAnchor.setText("Create Operator");
 		createOperatorAnchor.setHref("#");
 		createOperatorAnchor.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){
-				main.showCreateOperator();
+				mainView.showCreateOperator();
 			}
 		});
 		
@@ -28,7 +29,7 @@ public class MenuView extends Composite{
 		viewOperatorAnchor.setHref("#");
 		viewOperatorAnchor.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){
-				main.showViewOperator();
+				mainView.showViewOperator();
 			}
 		});
 		
@@ -37,7 +38,7 @@ public class MenuView extends Composite{
 		updateOperatorAnchor.setHref("#");
 		updateOperatorAnchor.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){
-				main.showUpdateOperator();
+				mainView.showUpdateOperator();
 			}
 		});
 		

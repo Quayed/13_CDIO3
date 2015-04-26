@@ -9,8 +9,14 @@ public class MainView {
 		MenuView menu = new MenuView(this);
 		RootPanel.get("nav").add(menu);
 		
-		content = new ContentView();
-		
+		content = new ContentView(RootPanel.get("content"));
+		showStartView();
+	}
+	
+	// This method should be called on start up.
+	public void showStartView(){
+		content.clearContent();
+		content.showStartView();
 	}
 
 	public void showCreateOperator() {
