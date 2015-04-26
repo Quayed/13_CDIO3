@@ -8,6 +8,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -45,33 +46,40 @@ public class _3_cdio3 implements EntryPoint {
 					contentPanel.getElement().appendChild(createOperatorHeader);
 					
 					//Create the horizontal panel
-					HorizontalPanel namePanel = new HorizontalPanel();
-					HorizontalPanel iniPanel = new HorizontalPanel();
-					HorizontalPanel cprPanel = new HorizontalPanel();
+					//HorizontalPanel namePanel = new HorizontalPanel();
+					//HorizontalPanel iniPanel = new HorizontalPanel();
+					//HorizontalPanel cprPanel = new HorizontalPanel();
+					FlexTable table = new FlexTable();
 					
 					// Insert label and textbox for Opr_name	
 					Label oprNameLabel = new Label("Operator name:");
 					oprNameLabel.setWidth(labelWidth);
 					TextBox oprNameTextBox = new TextBox();
 					oprNameTextBox.setWidth(textBoxWidth);
-					namePanel.add(oprNameLabel);
-					namePanel.add(oprNameTextBox);
+					table.setWidget(0, 0, oprNameLabel);
+					table.setWidget(0, 1, oprNameTextBox);
+					//namePanel.add(oprNameLabel);
+					//namePanel.add(oprNameTextBox);
 				
 					// Insert label and textbox for Ini
 					Label iniLabel = new Label("Ini:");
 					iniLabel.setWidth(labelWidth);
 					TextBox iniTextBox = new TextBox();
 					iniTextBox.setWidth(textBoxWidth);
-					iniPanel.add(iniLabel);
-					iniPanel.add(iniTextBox);
+					table.setWidget(1, 0, iniLabel);
+					table.setWidget(1, 1, iniTextBox);
+					//iniPanel.add(iniLabel);
+					//iniPanel.add(iniTextBox);
 				
 					// Insert label and textbox for password
 					Label cprLabel = new Label("CPR-number:");
 					cprLabel.setWidth(labelWidth);
 					TextBox cprTextBox = new TextBox();
 					cprTextBox.setWidth(textBoxWidth);
-					cprPanel.add(cprLabel);
-					cprPanel.add(cprTextBox);
+					table.setWidget(2, 0, cprLabel);
+					table.setWidget(2, 1, cprTextBox);
+					//cprPanel.add(cprLabel);
+					//cprPanel.add(cprTextBox);
 					
 					// create the submit button
 					Button submitCreateOperator = new Button("Create Operator");
@@ -81,11 +89,13 @@ public class _3_cdio3 implements EntryPoint {
 						}
 					});
 					
+					table.setWidget(3, 0, submitCreateOperator);
 					// Add all of the horizontal panels to the rootPanel
-					contentPanel.add(namePanel);
-					contentPanel.add(iniPanel);
-					contentPanel.add(cprPanel);
-					contentPanel.add(submitCreateOperator);
+					//contentPanel.add(namePanel);
+					//contentPanel.add(iniPanel);
+					//contentPanel.add(cprPanel);
+					//contentPanel.add(submitCreateOperator);
+					contentPanel.add(table);
 					
 				}
 				
@@ -112,5 +122,5 @@ public class _3_cdio3 implements EntryPoint {
 		// This function should clear the content div from everything inside of it.
 		contentPanel.clear();
 	}
-
+	
 }
