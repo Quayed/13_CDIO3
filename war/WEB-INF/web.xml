@@ -6,7 +6,16 @@
          xmlns="http://java.sun.com/xml/ns/javaee">
 
   <!-- Servlets -->
-  
+ 	<servlet>
+ 	<servlet-name>MainData</servlet-name>
+ 	<servlet-class>
+ 		com.cdio3.server.connection.MainData
+  	</servlet-class>
+	</servlet>
+	<servlet-mapping>
+  		<servlet-name>MainData</servlet-name>
+  		<url-pattern>/com.cdio3/IMainData</url-pattern>
+	</servlet-mapping>
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>_3_cdio3.html</welcome-file>
