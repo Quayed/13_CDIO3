@@ -1,8 +1,7 @@
 package com.cdio3.client.boundary;
 
-import com.cdio3.client.data.IMainData;
-import com.cdio3.client.data.IMainDataAsync;
-import com.cdio3.server.connection.MainData;
+import com.cdio3.client.data.DataConnection;
+import com.cdio3.client.data.DataConnectionAsync;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -18,12 +17,10 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class CreateView extends Composite {
 	VerticalPanel view;
-	IMainDataAsync serverConn;
+	DataConnectionAsync serverConn;
 	ServiceDefTarget target;
 	public CreateView(String url){
-		serverConn = (IMainDataAsync) GWT.create(IMainData.class);
-		target = (ServiceDefTarget) this.serverConn;
-		target.setServiceEntryPoint(url);
+		serverConn = (DataConnectionAsync) GWT.create(DataConnection.class);
 		
 		//define width of labels and textBox
 		String labelWidth = "200px";

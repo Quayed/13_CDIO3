@@ -14,8 +14,9 @@
 	</servlet>
 	<servlet-mapping>
   		<servlet-name>MainData</servlet-name>
-  		<url-pattern>/com.cdio3/someStuff</url-pattern>
+  		<url-pattern>/com.cdio3/dataConnection</url-pattern>
 	</servlet-mapping>
+	
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>_3_cdio3.html</welcome-file>

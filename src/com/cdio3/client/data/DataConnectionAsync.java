@@ -2,6 +2,6 @@ package com.cdio3.client.data;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-public interface IMainDataAsync {
+public interface DataConnectionAsync {
 	void sayHello(String message, AsyncCallback<String> callback);
 }
