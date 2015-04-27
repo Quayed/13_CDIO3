@@ -1,2 +1,4 @@
-/_3_cdio3.devmode.js
-/_3_cdio3.nocache.js
+*
+!/gwt/
+!.gitignore
+!clear.cache.gif
