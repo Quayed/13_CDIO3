@@ -19,9 +19,9 @@ public class CreateView extends Composite {
 	VerticalPanel view;
 	DataConnectionAsync serverConn;
 	ServiceDefTarget target;
-	public CreateView(String url){
-		serverConn = (DataConnectionAsync) GWT.create(DataConnection.class);
+	public CreateView(DataConnectionAsync service){
 		
+		this.serverConn = service;
 		//define width of labels and textBox
 		String labelWidth = "200px";
 		String textBoxWidth = "200px";
@@ -61,7 +61,7 @@ public class CreateView extends Composite {
 		Button submitCreateOperator = new Button("Create Operator");
 		submitCreateOperator.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){
-				serverConn.sayHello("mathias", new defaultCallback());
+				serverConn.sayHello("mathias", new DefaultCallback());
 			}
 		});
 	
@@ -69,18 +69,16 @@ public class CreateView extends Composite {
 		view.add(table);
 	}
 	
-	private class defaultCallback implements AsyncCallback{
+	private class DefaultCallback implements AsyncCallback<String>{
 
 		@Override
 		public void onFailure(Throwable caught) {
-			// TODO Auto-generated method stub
-			
+			Window.alert("FAIL");			
 		}
 
 		@Override
-		public void onSuccess(Object result) {
+		public void onSuccess(String result) {
 			Window.alert("Hej");
-			
 		}
 		
 	}

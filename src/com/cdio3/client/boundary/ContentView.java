@@ -1,5 +1,6 @@
 package com.cdio3.client.boundary;
 
+import com.cdio3.client.data.DataConnectionAsync;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.HeadingElement;
@@ -7,9 +8,10 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 public class ContentView{
 	private RootPanel content;
-	
-	public ContentView(RootPanel content){
+	private DataConnectionAsync service;
+	public ContentView(RootPanel content, DataConnectionAsync service){
 		this.content = content;
+		this.service = service;
 	}
 	
 	public void showCreateOperator(){
@@ -17,7 +19,7 @@ public class ContentView{
 		HeadingElement createOperatorHeader = Document.get().createHElement(3);
 		createOperatorHeader.setInnerHTML("Create Operator");
 		content.getElement().appendChild(createOperatorHeader);
-		content.add(new CreateView(GWT.getModuleBaseURL() + "someStuff"));
+		content.add(new CreateView(this.service));
 	}
 	
 	public void showViewOperator(){

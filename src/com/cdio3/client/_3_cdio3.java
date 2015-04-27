@@ -2,6 +2,7 @@ package com.cdio3.client;
 
 import com.cdio3.client.boundary.MainView;
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -24,6 +25,6 @@ public class _3_cdio3 implements EntryPoint {
 	 */
 
 	public void onModuleLoad() {
-		MainView mainView = new MainView();
+		MainView mainView = new MainView(GWT.getModuleBaseURL() + "dataConnection");
 	}	
 }

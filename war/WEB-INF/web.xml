@@ -7,14 +7,14 @@
 
   <!-- Servlets -->
  	<servlet>
- 	<servlet-name>MainData</servlet-name>
+ 	<servlet-name>dataConnection</servlet-name>
  	<servlet-class>
- 		com.cdio3.server.connection.MainData
+ 		com.cdio3.server.connection.DataConnectionImpl
   	</servlet-class>
 	</servlet>
 	<servlet-mapping>
-  		<servlet-name>MainData</servlet-name>
-  		<url-pattern>/com.cdio3/dataConnection</url-pattern>
+  		<servlet-name>dataConnection</servlet-name>
+  		<url-pattern>/_3_cdio3/dataConnection</url-pattern>
 	</servlet-mapping>
 	
   <!-- Default page to serve -->
