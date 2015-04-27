@@ -7,6 +7,7 @@ public class MainData extends RemoteServiceServlet implements IMainData{
 
 	@Override
 	public String sayHello(String message) {
+		System.out.println(message);
 		return message.toUpperCase();
 	}
 
