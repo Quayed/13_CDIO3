@@ -1,6 +1,6 @@
 package com.cdio3.client.boundary;
 
-import com.cdio3.client.data.DataConnectionAsync;
+import com.cdio3.client.service.DataConnectionAsync;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.HeadingElement;

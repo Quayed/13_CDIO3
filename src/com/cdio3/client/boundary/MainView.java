@@ -1,7 +1,7 @@
 package com.cdio3.client.boundary;
 
-import com.cdio3.client.data.DataConnection;
-import com.cdio3.client.data.DataConnectionAsync;
+import com.cdio3.client.service.DataConnection;
+import com.cdio3.client.service.DataConnectionAsync;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.RootPanel;

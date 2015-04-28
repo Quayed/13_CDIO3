@@ -1,6 +1,6 @@
-package com.cdio3.server.connection;
+package com.cdio3.server.service;
 
-import com.cdio3.client.data.DataConnection;
+import com.cdio3.client.service.DataConnection;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
