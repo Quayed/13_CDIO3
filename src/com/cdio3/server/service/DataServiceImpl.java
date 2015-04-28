@@ -1,11 +1,11 @@
 package com.cdio3.server.service;
 
-import com.cdio3.client.service.DataConnection;
+import com.cdio3.client.service.DataService;
 import com.cdio3.shared.OperatorDTO;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 
-public class DataConnectionImpl extends RemoteServiceServlet implements DataConnection{
+public class DataServiceImpl extends RemoteServiceServlet implements DataService{
 
 	@Override
 	public String sayHello(String message) {

@@ -1,17 +1,17 @@
 package com.cdio3.client.boundary;
 
-import com.cdio3.client.service.DataConnection;
-import com.cdio3.client.service.DataConnectionAsync;
+import com.cdio3.client.service.DataService;
+import com.cdio3.client.service.DataServiceAsync;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.RootPanel;
 
 public class MainView {
 	private ContentView content;
-	private DataConnectionAsync service;
+	private DataServiceAsync service;
 	
 	public MainView(String url){
-		this.service = GWT.create(DataConnection.class);
+		this.service = GWT.create(DataService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) this.service;
 		endpoint.setServiceEntryPoint(url);
 		

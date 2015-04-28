@@ -1,4 +1,4 @@
-package com.cdio3.server.data;
+package com.cdio3.server.dal;
 
 import java.util.List;
 

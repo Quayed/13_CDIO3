@@ -1,4 +1,4 @@
-package com.cdio3.server.data;
+package com.cdio3.server.dal;
 
 public class DALException extends Exception {
 	private static final long serialVersionUID = 1L;

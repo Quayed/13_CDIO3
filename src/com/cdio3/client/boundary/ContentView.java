@@ -1,6 +1,6 @@
 package com.cdio3.client.boundary;
 
-import com.cdio3.client.service.DataConnectionAsync;
+import com.cdio3.client.service.DataServiceAsync;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.HeadingElement;
@@ -8,8 +8,8 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 public class ContentView{
 	private RootPanel content;
-	private DataConnectionAsync service;
-	public ContentView(RootPanel content, DataConnectionAsync service){
+	private DataServiceAsync service;
+	public ContentView(RootPanel content, DataServiceAsync service){
 		this.content = content;
 		this.service = service;
 	}
