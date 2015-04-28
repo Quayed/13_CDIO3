@@ -2,6 +2,8 @@ package com.cdio3.server.data;
 
 import java.util.List;
 
+import com.cdio3.shared.OperatorDTO;
+
 public interface IOperatorDAO {
 	OperatorDTO getOperatoer(int oprId) throws DALException;
 

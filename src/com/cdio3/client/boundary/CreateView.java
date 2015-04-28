@@ -1,8 +1,7 @@
 package com.cdio3.client.boundary;
 
-import com.cdio3.client.service.DataConnection;
 import com.cdio3.client.service.DataConnectionAsync;
-import com.google.gwt.core.shared.GWT;
+import com.cdio3.shared.OperatorDTO;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
@@ -19,6 +18,7 @@ public class CreateView extends Composite {
 	VerticalPanel view;
 	DataConnectionAsync serverConn;
 	ServiceDefTarget target;
+	
 	public CreateView(DataConnectionAsync service){
 		
 		this.serverConn = service;
@@ -49,7 +49,7 @@ public class CreateView extends Composite {
 		table.setWidget(1, 0, iniLabel);
 		table.setWidget(1, 1, iniTextBox);
 	
-		// Insert label and textbox for password
+		// Insert label and textbox for cpr
 		Label cprLabel = new Label("CPR-number:");
 		cprLabel.setWidth(labelWidth);
 		TextBox cprTextBox = new TextBox();
@@ -61,7 +61,8 @@ public class CreateView extends Composite {
 		Button submitCreateOperator = new Button("Create Operator");
 		submitCreateOperator.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){
-				serverConn.sayHello("mathias", new DefaultCallback());
+				OperatorDTO newOperator = new OperatorDTO(0, oprNameTextBox.getText(), iniTextBox.getText(), cprTextBox.getText(), "");
+				serverConn.createOperator(newOperator, new createOperatorCallback());
 			}
 		});
 	
@@ -69,16 +70,18 @@ public class CreateView extends Composite {
 		view.add(table);
 	}
 	
-	private class DefaultCallback implements AsyncCallback<String>{
+	private class createOperatorCallback implements AsyncCallback<OperatorDTO>{
 
 		@Override
 		public void onFailure(Throwable caught) {
-			Window.alert("FAIL");			
+			// TODO Auto-generated method stub
+			
 		}
 
 		@Override
-		public void onSuccess(String result) {
-			Window.alert("Hej");
+		public void onSuccess(OperatorDTO result) {
+			// TODO Auto-generated method stub
+			
 		}
 		
 	}
