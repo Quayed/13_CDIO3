@@ -61,7 +61,7 @@ public class CreateView extends Composite {
 		Button submitCreateOperator = new Button("Create Operator");
 		submitCreateOperator.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){
-				OperatorDTO newOperator = new OperatorDTO(0, oprNameTextBox.getText(), iniTextBox.getText(), cprTextBox.getText(), "");
+				OperatorDTO newOperator = new OperatorDTO(0, oprNameTextBox.getText(), iniTextBox.getText(), cprTextBox.getText(), ""); //password skal genereres.
 				serverConn.createOperator(newOperator, new createOperatorCallback());
 			}
 		});
@@ -79,7 +79,7 @@ public class CreateView extends Composite {
 		}
 
 		@Override
-		public void onSuccess(OperatorDTO result) {
+		public void onSuccess(OperatorDTO newOperator) {
 			// TODO Auto-generated method stub
 			
 		}
