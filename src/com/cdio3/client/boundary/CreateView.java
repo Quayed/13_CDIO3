@@ -4,6 +4,7 @@ import com.cdio3.client.service.DataServiceAsync;
 import com.cdio3.shared.OperatorDTO;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.Button;
@@ -17,6 +18,9 @@ public class CreateView extends Composite {
 	VerticalPanel view;
 	DataServiceAsync serverConn;
 	ServiceDefTarget target;
+	TextBox oprNameTextBox;
+	TextBox iniTextBox;
+	TextBox cprTextBox;
 	
 	public CreateView(DataServiceAsync service){
 		
@@ -35,7 +39,7 @@ public class CreateView extends Composite {
 		// Insert label and textbox for Opr_name	
 		Label oprNameLabel = new Label("Operator name:");
 		oprNameLabel.setWidth(labelWidth);
-		TextBox oprNameTextBox = new TextBox();
+		oprNameTextBox = new TextBox();
 		oprNameTextBox.setWidth(textBoxWidth);
 		table.setWidget(0, 0, oprNameLabel);
 		table.setWidget(0, 1, oprNameTextBox);
@@ -43,7 +47,7 @@ public class CreateView extends Composite {
 		// Insert label and textbox for Ini
 		Label iniLabel = new Label("Ini:");
 		iniLabel.setWidth(labelWidth);
-		TextBox iniTextBox = new TextBox();
+		iniTextBox = new TextBox();
 		iniTextBox.setWidth(textBoxWidth);
 		table.setWidget(1, 0, iniLabel);
 		table.setWidget(1, 1, iniTextBox);
@@ -51,7 +55,7 @@ public class CreateView extends Composite {
 		// Insert label and textbox for cpr
 		Label cprLabel = new Label("CPR-number:");
 		cprLabel.setWidth(labelWidth);
-		TextBox cprTextBox = new TextBox();
+		cprTextBox = new TextBox();
 		cprTextBox.setWidth(textBoxWidth);
 		table.setWidget(2, 0, cprLabel);
 		table.setWidget(2, 1, cprTextBox);
@@ -60,7 +64,7 @@ public class CreateView extends Composite {
 		Button submitCreateOperator = new Button("Create Operator");
 		submitCreateOperator.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){
-				OperatorDTO newOperator = new OperatorDTO(0, oprNameTextBox.getText(), iniTextBox.getText(), cprTextBox.getText(), ""); //password skal genereres.
+				OperatorDTO newOperator = new OperatorDTO(0, oprNameTextBox.getText(), iniTextBox.getText(), cprTextBox.getText(), "");
 				serverConn.createOperator(newOperator, new createOperatorCallback());
 			}
 		});
@@ -73,13 +77,13 @@ public class CreateView extends Composite {
 
 		@Override
 		public void onFailure(Throwable caught) {
-			// TODO Auto-generated method stub
+			Window.alert("Some error happend");
 			
 		}
 
 		@Override
 		public void onSuccess(OperatorDTO newOperator) {
-			// TODO Auto-generated method stub
+			Window.alert("Operatør oprettet - password er: " + newOperator.getOprID() + " og password er " + newOperator.getPassword());
 			
 		}
 		

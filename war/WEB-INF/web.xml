@@ -9,7 +9,7 @@
  	<servlet>
  	<servlet-name>dataConnection</servlet-name>
  	<servlet-class>
- 		com.cdio3.server.connection.DataConnectionImpl
+ 		com.cdio3.server.service.DataServiceImpl
   	</servlet-class>
 	</servlet>
 	<servlet-mapping>

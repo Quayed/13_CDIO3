@@ -1,5 +1,7 @@
 package com.cdio3.shared;
 
+import java.io.Serializable;
+
 /**
  * Operatoer Data Access Objekt
  * 
@@ -7,7 +9,11 @@ package com.cdio3.shared;
  * @version 1.2
  */
 
-public class OperatorDTO {
+public class OperatorDTO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/** Operatoer-identifikationsnummer (opr_id) i omraadet 1-99999999. Vaelges af brugerne */
 	private int oprID;
 	/** Operatoernavn (opr_navn) min. 2 max. 20 karakterer */
@@ -18,6 +24,10 @@ public class OperatorDTO {
 	private String cpr;
 	/** Operatoer password min. 7 max. 8 karakterer */
 	private String password;
+	
+	public OperatorDTO(){
+		
+	}
 
 	public OperatorDTO(int oprID, String oprName, String ini, String cpr, String password) {
 		this.oprID = oprID;

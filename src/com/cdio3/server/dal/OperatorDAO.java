@@ -13,6 +13,15 @@ public class OperatorDAO implements IOperatorDAO {
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
+	public OperatorDAO(){
+		try {
+			new Connector();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public OperatorDTO getOperator(int oprId) throws DALException {
 		try {
 			ps = Connector.prepare("SELECT opr_name, ini, cpr, password FROM operator WHERE opr_id = ?");
@@ -44,7 +53,7 @@ public class OperatorDAO implements IOperatorDAO {
 		return list;
 	}
 	
-	public void createOperator(OperatorDTO opr) throws DALException {
+	public OperatorDTO createOperator(OperatorDTO opr) throws DALException {
 		try {
 			ps = Connector.prepare("INSERT INTO operator(opr_id, opr_name, ini, cpr, password) VALUES " + "(?, ?, ?, ?, ?)");
 			ps.setString(1, null);
@@ -57,6 +66,7 @@ public class OperatorDAO implements IOperatorDAO {
 		} catch (SQLException e) {
 			throw new DALException(e);
 		}
+		return opr;
 	}
 
 	public void updateOperator(OperatorDTO opr) throws DALException {
