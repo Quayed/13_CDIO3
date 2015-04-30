@@ -23,7 +23,10 @@ public class ContentView{
 	}
 	
 	public void showViewOperator(){
-		
+		HeadingElement viewOperatorHeader = Document.get().createHElement(3);
+		viewOperatorHeader.setInnerHTML("View Operators:");
+		content.getElement().appendChild(viewOperatorHeader);
+		content.add(new ViewView(this.service));
 	}
 	
 	public void showUpdateOperator(){

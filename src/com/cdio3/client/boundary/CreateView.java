@@ -6,7 +6,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -15,12 +14,11 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class CreateView extends Composite {
-	VerticalPanel view;
-	DataServiceAsync serverConn;
-	ServiceDefTarget target;
-	TextBox oprNameTextBox;
-	TextBox iniTextBox;
-	TextBox cprTextBox;
+	private VerticalPanel view;
+	private DataServiceAsync serverConn;
+	private TextBox oprNameTextBox;
+	private TextBox iniTextBox;
+	private TextBox cprTextBox;
 	
 	public CreateView(DataServiceAsync service){
 		

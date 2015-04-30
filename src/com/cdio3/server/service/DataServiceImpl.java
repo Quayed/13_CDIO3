@@ -1,5 +1,7 @@
 package com.cdio3.server.service;
 
+import java.util.List;
+
 import com.cdio3.client.service.DataService;
 import com.cdio3.server.PasswordGenerator;
 import com.cdio3.server.dal.DALException;
@@ -18,9 +20,6 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 
 	@Override
 	public OperatorDTO createOperator(OperatorDTO operator) {
-		// TODO Auto-generated method stub
-		// this method should call the createOperator method inside of the OperatorDAO class
-		System.out.println("serverside reached");
 		String newPassword;
 		newPassword = PasswordGenerator.generatePassword();
 		operator.setPassword(newPassword);
@@ -32,6 +31,19 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 			// Something needs to happen here - don't know what tho.
 		}
 		return operator;
+	}
+
+	@Override
+	public List<OperatorDTO> getAllOperators() {
+		OperatorDAO dao = new OperatorDAO();
+		List<OperatorDTO> operators = null;
+		try {
+			operators = dao.getOperatorList();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return operators;
 	}
 
 }
