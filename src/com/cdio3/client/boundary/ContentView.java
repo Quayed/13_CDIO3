@@ -30,7 +30,10 @@ public class ContentView{
 	}
 	
 	public void showUpdateOperator(){
-		
+		HeadingElement updateOperatorHeader = Document.get().createHElement(3);
+		updateOperatorHeader.setInnerHTML("Update Operators:");
+		content.getElement().appendChild(updateOperatorHeader);
+		content.add(new UpdateView(this.service));
 	}
 	
 	public void clearContent(){
