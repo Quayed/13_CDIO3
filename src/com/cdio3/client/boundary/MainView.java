@@ -9,21 +9,21 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class MainView {
 	private ContentView content;
 	private DataServiceAsync service;
-	
-	public MainView(String url){
+
+	public MainView(String url) {
 		this.service = GWT.create(DataService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) this.service;
 		endpoint.setServiceEntryPoint(url);
-		
+
 		MenuView menu = new MenuView(this);
 		RootPanel.get("nav").add(menu);
-		
+
 		content = new ContentView(RootPanel.get("content"), service);
 		showStartView();
 	}
-	
+
 	// This method should be called on start up.
-	public void showStartView(){
+	public void showStartView() {
 		content.clearContent();
 		content.showStartView();
 	}
@@ -42,5 +42,5 @@ public class MainView {
 		content.clearContent();
 		content.showUpdateOperator();
 	}
-	
+
 }

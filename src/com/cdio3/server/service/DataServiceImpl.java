@@ -9,8 +9,7 @@ import com.cdio3.server.dal.OperatorDAO;
 import com.cdio3.shared.OperatorDTO;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-
-public class DataServiceImpl extends RemoteServiceServlet implements DataService{
+public class DataServiceImpl extends RemoteServiceServlet implements DataService {
 
 	@Override
 	public String sayHello(String message) {
@@ -55,7 +54,7 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import com.cdio3.shared.OperatorDTO;
 
 public class OperatorDAO implements IOperatorDAO {
-	
+
 	private PreparedStatement ps;
 	private ResultSet rs;
-	
-	public OperatorDAO(){
+
+	public OperatorDAO() {
 		try {
 			new Connector();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
@@ -21,18 +21,17 @@ public class OperatorDAO implements IOperatorDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public OperatorDTO getOperator(int oprId) throws DALException {
 		try {
 			ps = Connector.prepare("SELECT opr_name, ini, cpr, password FROM operator WHERE opr_id = ?");
 			ps.setInt(1, oprId);
 			rs = ps.executeQuery();
-			
+
 			if (!rs.first()) {
 				return null;
 			} else {
-				return new OperatorDTO(oprId, rs.getString("opr_name"), rs.getString("ini"), rs.getString("cpr"),
-					rs.getString("password"));
+				return new OperatorDTO(oprId, rs.getString("opr_name"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"));
 			}
 		} catch (SQLException e) {
 			throw new DALException(e);
@@ -44,15 +43,15 @@ public class OperatorDAO implements IOperatorDAO {
 		try {
 			rs = Connector.doQuery("SELECT opr_id, opr_name, ini, cpr, password FROM operator");
 			while (rs.next()) {
-				list.add(new OperatorDTO(rs.getInt("opr_id"), rs.getString("opr_name"), rs.getString("ini"), rs.getString("cpr"),
-						rs.getString("password")));
+				list.add(new OperatorDTO(rs.getInt("opr_id"), rs.getString("opr_name"), rs.getString("ini"), rs.getString("cpr"), rs
+						.getString("password")));
 			}
 		} catch (SQLException e) {
 			throw new DALException(e);
 		}
 		return list;
 	}
-	
+
 	public OperatorDTO createOperator(OperatorDTO opr) throws DALException {
 		try {
 			ps = Connector.prepare("INSERT INTO operator(opr_id, opr_name, ini, cpr, password) VALUES " + "(?, ?, ?, ?, ?)");

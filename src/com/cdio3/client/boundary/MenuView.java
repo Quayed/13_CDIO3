@@ -6,42 +6,42 @@ import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 
-public class MenuView extends Composite{
+public class MenuView extends Composite {
 	private HorizontalPanel menuPanel;
 	private final MainView mainView;
-	
-	public MenuView(MainView main){
+
+	public MenuView(MainView main) {
 		menuPanel = new HorizontalPanel();
 		initWidget(this.menuPanel);
 		mainView = main;
-		
+
 		Anchor createOperatorAnchor = new Anchor();
 		createOperatorAnchor.setText("Create Operator");
 		createOperatorAnchor.setHref("#");
-		createOperatorAnchor.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event){
+		createOperatorAnchor.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
 				mainView.showCreateOperator();
 			}
 		});
-		
+
 		Anchor viewOperatorAnchor = new Anchor();
 		viewOperatorAnchor.setText("View operators");
 		viewOperatorAnchor.setHref("#");
-		viewOperatorAnchor.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event){
+		viewOperatorAnchor.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
 				mainView.showViewOperator();
 			}
 		});
-		
+
 		Anchor updateOperatorAnchor = new Anchor();
 		updateOperatorAnchor.setText("Update Operator");
 		updateOperatorAnchor.setHref("#");
-		updateOperatorAnchor.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event){
+		updateOperatorAnchor.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
 				mainView.showUpdateOperator();
 			}
 		});
-		
+
 		menuPanel.add(createOperatorAnchor);
 		menuPanel.add(viewOperatorAnchor);
 		menuPanel.add(updateOperatorAnchor);

@@ -19,29 +19,29 @@ public class CreateView extends Composite {
 	private TextBox oprNameTextBox;
 	private TextBox iniTextBox;
 	private TextBox cprTextBox;
-	
-	public CreateView(DataServiceAsync service){
-		
+
+	public CreateView(DataServiceAsync service) {
+
 		this.serverConn = service;
-		//define width of labels and textBox
+		// define width of labels and textBox
 		String labelWidth = "200px";
 		String textBoxWidth = "200px";
-		
+
 		// create the verticalPanel to hold this view.
 		view = new VerticalPanel();
 		initWidget(this.view);
-		
-		//Create FlexTable to hold the labels and text box's
-		FlexTable table = new FlexTable();		
-		
-		// Insert label and textbox for Opr_name	
+
+		// Create FlexTable to hold the labels and text box's
+		FlexTable table = new FlexTable();
+
+		// Insert label and textbox for Opr_name
 		Label oprNameLabel = new Label("Operator name:");
 		oprNameLabel.setWidth(labelWidth);
 		oprNameTextBox = new TextBox();
 		oprNameTextBox.setWidth(textBoxWidth);
 		table.setWidget(0, 0, oprNameLabel);
 		table.setWidget(0, 1, oprNameTextBox);
-	
+
 		// Insert label and textbox for Ini
 		Label iniLabel = new Label("Ini:");
 		iniLabel.setWidth(labelWidth);
@@ -49,7 +49,7 @@ public class CreateView extends Composite {
 		iniTextBox.setWidth(textBoxWidth);
 		table.setWidget(1, 0, iniLabel);
 		table.setWidget(1, 1, iniTextBox);
-	
+
 		// Insert label and textbox for cpr
 		Label cprLabel = new Label("CPR-number:");
 		cprLabel.setWidth(labelWidth);
@@ -57,33 +57,33 @@ public class CreateView extends Composite {
 		cprTextBox.setWidth(textBoxWidth);
 		table.setWidget(2, 0, cprLabel);
 		table.setWidget(2, 1, cprTextBox);
-		
+
 		// create the submit button
 		Button submitCreateOperator = new Button("Create Operator");
-		submitCreateOperator.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event){
+		submitCreateOperator.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
 				OperatorDTO newOperator = new OperatorDTO(0, oprNameTextBox.getText(), iniTextBox.getText(), cprTextBox.getText(), "");
 				serverConn.createOperator(newOperator, new createOperatorCallback());
 			}
 		});
-	
+
 		table.setWidget(3, 0, submitCreateOperator);
 		view.add(table);
 	}
-	
-	private class createOperatorCallback implements AsyncCallback<OperatorDTO>{
+
+	private class createOperatorCallback implements AsyncCallback<OperatorDTO> {
 
 		@Override
 		public void onFailure(Throwable caught) {
 			Window.alert("Some error happend");
-			
+
 		}
 
 		@Override
 		public void onSuccess(OperatorDTO newOperator) {
 			Window.alert("Operatør oprettet - password er: " + newOperator.getOprID() + " og password er " + newOperator.getPassword());
-			
+
 		}
-		
+
 	}
 }

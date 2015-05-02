@@ -16,12 +16,13 @@ import com.google.gwt.user.client.ui.HTMLTable.CellFormatter;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 
-public class UpdateView extends Composite{
+public class UpdateView extends Composite {
 	private FlexTable table;
 	private int editRow;
 	private Button cancelButton;
 	private DataServiceAsync service;
-	public UpdateView(DataServiceAsync service){
+
+	public UpdateView(DataServiceAsync service) {
 		this.service = service;
 		table = new FlexTable();
 		initWidget(table);
@@ -38,18 +39,16 @@ public class UpdateView extends Composite{
 		tableCellFormatter.setStyleName(0, 2, "tableHeader");
 		tableCellFormatter.setStyleName(0, 3, "tableHeader");
 		tableCellFormatter.setStyleName(0, 4, "tableHeader");
-		
+
 		table.setWidget(0, 0, new Label("ID:"));
 		table.setWidget(0, 1, new Label("Name:"));
 		table.setWidget(0, 2, new Label("Ini:"));
 		table.setWidget(0, 3, new Label("CPR:"));
 		table.setWidget(0, 4, new Label("Password:"));
-		
-		
-		
+
 	}
-	
-	private class getOperatorsCallback implements AsyncCallback<List<OperatorDTO>>{
+
+	private class getOperatorsCallback implements AsyncCallback<List<OperatorDTO>> {
 
 		@Override
 		public void onFailure(Throwable caught) {
@@ -58,53 +57,53 @@ public class UpdateView extends Composite{
 
 		@Override
 		public void onSuccess(List<OperatorDTO> operators) {
-			for(int i = 0; i < operators.size(); i++){
-				UpdateView.this.table.setWidget(i+1, 0, new Label("" + operators.get(i).getOprID()));
-				UpdateView.this.table.setWidget(i+1, 1, new Label(operators.get(i).getOprName()));
-				UpdateView.this.table.setWidget(i+1, 2, new Label(operators.get(i).getIni()));
-				UpdateView.this.table.setWidget(i+1, 3, new Label(operators.get(i).getCpr()));
-				UpdateView.this.table.setWidget(i+1, 4, new Label(operators.get(i).getPassword()));
+			for (int i = 0; i < operators.size(); i++) {
+				UpdateView.this.table.setWidget(i + 1, 0, new Label("" + operators.get(i).getOprID()));
+				UpdateView.this.table.setWidget(i + 1, 1, new Label(operators.get(i).getOprName()));
+				UpdateView.this.table.setWidget(i + 1, 2, new Label(operators.get(i).getIni()));
+				UpdateView.this.table.setWidget(i + 1, 3, new Label(operators.get(i).getCpr()));
+				UpdateView.this.table.setWidget(i + 1, 4, new Label(operators.get(i).getPassword()));
 				Anchor editAnchor = new Anchor("Edit");
 				editAnchor.addClickHandler(new EditClickHandler());
-				UpdateView.this.table.setWidget(i+1, 5, editAnchor);
-				
+				UpdateView.this.table.setWidget(i + 1, 5, editAnchor);
+
 			}
 		}
-		
+
 	}
-	
-	private class EditClickHandler implements ClickHandler{
+
+	private class EditClickHandler implements ClickHandler {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			
-			if(cancelButton != null){
-				cancelButton.fireEvent(new ClickEvent(){});
+
+			if (cancelButton != null) {
+				cancelButton.fireEvent(new ClickEvent() {
+				});
 			}
-			
+
 			editRow = table.getCellForEvent(event).getRowIndex();
-			
-			for (int i = 1; i < 5; i++){
+
+			for (int i = 1; i < 5; i++) {
 				TextBox editTextBox = new TextBox();
 				Label oldLabel = (Label) table.getWidget(editRow, i);
 				editTextBox.setText(oldLabel.getText());
 				table.clearCell(editRow, i);
 				table.setWidget(editRow, i, editTextBox);
 			}
-			
+
 			Button submitButton = new Button("Submit");
 			submitButton.addClickHandler(new SubmitClick());
 			table.clearCell(editRow, 5);
 			table.setWidget(editRow, 5, submitButton);
-			
-			
+
 			cancelButton = new Button("Cancel");
 			cancelButton.addClickHandler(new CancelClick());
 			table.setWidget(editRow, 6, cancelButton);
-			
+
 		}
-		
-		private class SubmitClick implements ClickHandler{
+
+		private class SubmitClick implements ClickHandler {
 
 			@Override
 			public void onClick(ClickEvent event) {
@@ -113,9 +112,9 @@ public class UpdateView extends Composite{
 				String ini = ((TextBox) table.getWidget(editRow, 2)).getText();
 				String cpr = ((TextBox) table.getWidget(editRow, 3)).getText();
 				String password = ((TextBox) table.getWidget(editRow, 4)).getText();
-				
+
 				OperatorDTO operator = new OperatorDTO(id, name, ini, cpr, password);
-				service.updateOperator(operator, new AsyncCallback<Void>(){
+				service.updateOperator(operator, new AsyncCallback<Void>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
@@ -126,19 +125,20 @@ public class UpdateView extends Composite{
 					@Override
 					public void onSuccess(Void result) {
 						Window.alert("Operatøren er blevet opdateret");
-						cancelButton.fireEvent(new ClickEvent(){});
+						cancelButton.fireEvent(new ClickEvent() {
+						});
 					}
-					
+
 				});
 			}
-			
+
 		}
-		
-		private class CancelClick implements ClickHandler{
+
+		private class CancelClick implements ClickHandler {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				for(int i = 1; i < 5; i++){
+				for (int i = 1; i < 5; i++) {
 					Label newLabel = new Label();
 					TextBox oldTextBox = (TextBox) table.getWidget(editRow, i);
 					newLabel.setText(oldTextBox.getText());
@@ -152,8 +152,8 @@ public class UpdateView extends Composite{
 				table.clearCell(editRow, 6);
 				cancelButton = null;
 			}
-			
+
 		}
-		
+
 	}
 }
