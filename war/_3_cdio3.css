@@ -56,3 +56,18 @@ footer{
 	font-size: 1.17em;
 	display: block;
 }
+
+table.operators{
+	
+}
+table.operators tr:first-child td{
+	font-weight: bold;
+	font-size: 16px;
+}
+table.operators tr td{
+	width: 150px;
+}
+table.operators tr td:nth-child(1),
+table.operators tr td:nth-child(3){
+	width: 50px;
+}
