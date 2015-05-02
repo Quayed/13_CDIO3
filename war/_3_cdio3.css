@@ -56,3 +56,34 @@ footer{
 	font-size: 1.17em;
 	display: block;
 }
+
+table input{
+	width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+table.operators{
+	
+}
+table.operators tr:first-child td{
+	font-weight: bold;
+	font-size: 16px;
+}
+table.operators tr td:nth-child(2),
+table.operators tr td:nth-child(4),
+table.operators tr td:nth-child(5){
+	width: 150px;
+}
+table.operators tr td:nth-child(1),
+table.operators tr td:nth-child(3){
+	width: 50px;
+}
+
+table.create-operator{
+	
+}
+table.create-operator tr td{
+	width: 200px;
+}

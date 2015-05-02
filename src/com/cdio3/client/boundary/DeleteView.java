@@ -11,7 +11,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.HTMLTable.CellFormatter;
 import com.google.gwt.user.client.ui.Label;
 
 public class DeleteView extends Composite {
@@ -21,19 +20,8 @@ public class DeleteView extends Composite {
 		this.service = service;
 		table = new FlexTable();
 		initWidget(table);
-		String cellWidth = "150px";
+		table.setStyleName("operators");
 		service.getAllOperators(new getOperatorsCallback());
-		CellFormatter tableCellFormatter = table.getCellFormatter();
-		tableCellFormatter.setWidth(0, 0, "50px");
-		tableCellFormatter.setWidth(0, 1, cellWidth);
-		tableCellFormatter.setWidth(0, 2, "50px");
-		tableCellFormatter.setWidth(0, 3, cellWidth);
-		tableCellFormatter.setWidth(0, 4, cellWidth);
-		tableCellFormatter.setStyleName(0, 0, "tableHeader");
-		tableCellFormatter.setStyleName(0, 1, "tableHeader");
-		tableCellFormatter.setStyleName(0, 2, "tableHeader");
-		tableCellFormatter.setStyleName(0, 3, "tableHeader");
-		tableCellFormatter.setStyleName(0, 4, "tableHeader");
 
 		table.setWidget(0, 0, new Label("ID:"));
 		table.setWidget(0, 1, new Label("Name:"));
