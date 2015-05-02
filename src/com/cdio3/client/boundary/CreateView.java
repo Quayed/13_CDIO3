@@ -23,9 +23,6 @@ public class CreateView extends Composite {
 	public CreateView(DataServiceAsync service) {
 
 		this.serverConn = service;
-		// define width of labels and textBox
-		String labelWidth = "200px";
-		String textBoxWidth = "200px";
 
 		// create the verticalPanel to hold this view.
 		view = new VerticalPanel();
@@ -33,28 +30,23 @@ public class CreateView extends Composite {
 
 		// Create FlexTable to hold the labels and text box's
 		FlexTable table = new FlexTable();
-
+		table.setStyleName("create-operator");
+		
 		// Insert label and textbox for Opr_name
 		Label oprNameLabel = new Label("Operator name:");
-		oprNameLabel.setWidth(labelWidth);
 		oprNameTextBox = new TextBox();
-		oprNameTextBox.setWidth(textBoxWidth);
 		table.setWidget(0, 0, oprNameLabel);
 		table.setWidget(0, 1, oprNameTextBox);
 
 		// Insert label and textbox for Ini
 		Label iniLabel = new Label("Ini:");
-		iniLabel.setWidth(labelWidth);
 		iniTextBox = new TextBox();
-		iniTextBox.setWidth(textBoxWidth);
 		table.setWidget(1, 0, iniLabel);
 		table.setWidget(1, 1, iniTextBox);
 
 		// Insert label and textbox for cpr
 		Label cprLabel = new Label("CPR-number:");
-		cprLabel.setWidth(labelWidth);
 		cprTextBox = new TextBox();
-		cprTextBox.setWidth(textBoxWidth);
 		table.setWidget(2, 0, cprLabel);
 		table.setWidget(2, 1, cprTextBox);
 
