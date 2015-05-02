@@ -43,4 +43,9 @@ public class MainView {
 		content.showUpdateOperator();
 	}
 
+	public void showDeleteOperator() {
+		content.clearContent();
+		content.showDeleteOperator();
+	}
+
 }

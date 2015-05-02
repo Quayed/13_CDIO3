@@ -82,4 +82,16 @@ public class OperatorDAO implements IOperatorDAO {
 		}
 	}
 
+	@Override
+	public void deleteOperator(int id) throws DALException {
+		try{
+			ps = Connector.prepare("DELETE FROM operator WHERE opr_id = ?");
+			ps.setInt(1, id);
+			ps.execute();
+		} catch(SQLException e){
+			throw new DALException(e);
+		}
+		
+	}
+
 }

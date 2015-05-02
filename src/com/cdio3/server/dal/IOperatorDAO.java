@@ -12,4 +12,6 @@ public interface IOperatorDAO {
 	OperatorDTO createOperator(OperatorDTO opr) throws DALException;
 
 	void updateOperator(OperatorDTO opr) throws DALException;
+	
+	void deleteOperator(int id) throws DALException;
 }

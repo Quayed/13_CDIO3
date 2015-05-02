@@ -15,4 +15,6 @@ public interface DataService extends RemoteService {
 	List<OperatorDTO> getAllOperators();
 
 	void updateOperator(OperatorDTO operator);
+	
+	void deleteOperator(int id);
 }

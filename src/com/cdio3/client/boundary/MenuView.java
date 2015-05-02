@@ -42,8 +42,18 @@ public class MenuView extends Composite {
 			}
 		});
 
+		Anchor deleteOperatorAnchor = new Anchor();
+		deleteOperatorAnchor.setText("Delete Operator");
+		deleteOperatorAnchor.setHref("#");
+		deleteOperatorAnchor.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				mainView.showDeleteOperator();
+			}
+		});
+		
 		menuPanel.add(createOperatorAnchor);
 		menuPanel.add(viewOperatorAnchor);
 		menuPanel.add(updateOperatorAnchor);
+		menuPanel.add(deleteOperatorAnchor);
 	}
 }
