@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.cdio3.client.service.DataServiceAsync;
 import com.cdio3.shared.OperatorDTO;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
@@ -14,8 +16,9 @@ import com.google.gwt.user.client.ui.Label;
 
 public class DeleteView extends Composite {
 	private FlexTable table;
-
+	private DataServiceAsync service;
 	public DeleteView(DataServiceAsync service) {
+		this.service = service;
 		table = new FlexTable();
 		initWidget(table);
 		String cellWidth = "150px";
@@ -56,10 +59,36 @@ public class DeleteView extends Composite {
 				DeleteView.this.table.setWidget(i + 1, 3, new Label(operators.get(i).getCpr()));
 				DeleteView.this.table.setWidget(i + 1, 4, new Label(operators.get(i).getPassword()));
 				Anchor deleteAnchor = new Anchor("Delete");
-
+				deleteAnchor.addClickHandler(new deleteClickHandler());
+				DeleteView.this.table.setWidget(i + 1, 5, deleteAnchor);
 			}
 		}
 
+	}
+	
+	private class deleteClickHandler implements ClickHandler{
+		private int deleteRow;
+
+		@Override
+		public void onClick(ClickEvent event) {
+			deleteRow = table.getCellForEvent(event).getRowIndex();
+			int operatorID = Integer.parseInt(((Label) table.getWidget(deleteRow, 0)).getText());
+			service.deleteOperator(operatorID, new AsyncCallback(){
+
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert("Something went wrong");
+				}
+
+				@Override
+				public void onSuccess(Object result) {
+					table.removeRow(deleteRow);
+					Window.alert("The Operator has been deleted");
+				}
+				
+			});
+		}
+		
 	}
 
 }

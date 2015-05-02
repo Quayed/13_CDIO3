@@ -57,4 +57,15 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 
 	}
 
+	@Override
+	public void deleteOperator(int id) {
+		OperatorDAO dao = new OperatorDAO();
+		try {
+			dao.deleteOperator(id);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }

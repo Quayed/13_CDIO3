@@ -13,4 +13,6 @@ public interface DataServiceAsync {
 	void getAllOperators(AsyncCallback<List<OperatorDTO>> callback);
 
 	void updateOperator(OperatorDTO operator, AsyncCallback<Void> callback);
+	
+	void deleteOperator(int id, AsyncCallback<Void> callback);
 }
