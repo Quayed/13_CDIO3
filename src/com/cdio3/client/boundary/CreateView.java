@@ -55,7 +55,21 @@ public class CreateView extends Composite {
 		submitCreateOperator.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				OperatorDTO newOperator = new OperatorDTO(0, oprNameTextBox.getText(), iniTextBox.getText(), cprTextBox.getText(), "");
-				serverConn.createOperator(newOperator, new createOperatorCallback());
+				serverConn.createOperator(newOperator, new AsyncCallback<OperatorDTO>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("Some error happend");
+
+					}
+
+					@Override
+					public void onSuccess(OperatorDTO newOperator) {
+						Window.alert("Operatør oprettet - password er: " + newOperator.getOprID() + " og password er " + newOperator.getPassword());
+
+					}
+
+				});
 			}
 		});
 
@@ -63,19 +77,4 @@ public class CreateView extends Composite {
 		view.add(table);
 	}
 
-	private class createOperatorCallback implements AsyncCallback<OperatorDTO> {
-
-		@Override
-		public void onFailure(Throwable caught) {
-			Window.alert("Some error happend");
-
-		}
-
-		@Override
-		public void onSuccess(OperatorDTO newOperator) {
-			Window.alert("Operatør oprettet - password er: " + newOperator.getOprID() + " og password er " + newOperator.getPassword());
-
-		}
-
-	}
 }
