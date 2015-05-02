@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.TextBox;
 public class UpdateView extends Composite{
 	private FlexTable table;
 	private int editRow;
+	private Button cancelButton;
 	public UpdateView(DataServiceAsync service){
 		table = new FlexTable();
 		initWidget(table);
@@ -74,20 +75,61 @@ public class UpdateView extends Composite{
 
 		@Override
 		public void onClick(ClickEvent event) {
+			
+			if(cancelButton != null){
+				cancelButton.fireEvent(new ClickEvent(){});
+			}
+			
 			editRow = table.getCellForEvent(event).getRowIndex();
 			
 			for (int i = 0; i < 5; i++){
 				TextBox editTextBox = new TextBox();
-				editTextBox.setText(table.getWidget(editRow, i).getElement().getInnerText());
+				Label oldLabel = (Label) table.getWidget(editRow, i);
+				editTextBox.setText(oldLabel.getText());
 				table.clearCell(editRow, i);
 				table.setWidget(editRow, i, editTextBox);
 			}
 			Button submitButton = new Button("Submit");
+			submitButton.addClickHandler(new SubmitClick());
 			table.clearCell(editRow, 5);
 			table.setWidget(editRow, 5, submitButton);
 			
-			Button cancelButton = new Button("Cancel");
+			
+			cancelButton = new Button("Cancel");
+			cancelButton.addClickHandler(new CancelClick());
 			table.setWidget(editRow, 6, cancelButton);
+			
+		}
+		
+		private class SubmitClick implements ClickHandler{
+
+			@Override
+			public void onClick(ClickEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		}
+		
+		private class CancelClick implements ClickHandler{
+
+			@Override
+			public void onClick(ClickEvent event) {
+				for(int i = 0; i < 5; i++){
+					Label newLabel = new Label();
+					TextBox oldTextBox = (TextBox) table.getWidget(editRow, i);
+					newLabel.setText(oldTextBox.getText());
+					table.clearCell(editRow, i);
+					table.setWidget(editRow, i, newLabel);
+				}
+				table.clearCell(editRow, 5);
+				Anchor editAnchor = new Anchor("Edit");
+				editAnchor.addClickHandler(new EditClickHandler());
+				table.setWidget(editRow, 5, editAnchor);
+				table.clearCell(editRow, 6);
+				cancelButton = null;
+			}
+			
 		}
 		
 	}
