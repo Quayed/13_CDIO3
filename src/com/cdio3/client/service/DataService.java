@@ -11,4 +11,5 @@ public interface DataService extends RemoteService{
 	String sayHello(String message);
 	OperatorDTO createOperator(OperatorDTO operator);
 	List<OperatorDTO> getAllOperators();
+	void updateOperator(OperatorDTO operator);
 }

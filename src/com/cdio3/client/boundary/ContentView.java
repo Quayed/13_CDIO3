@@ -1,9 +1,9 @@
 package com.cdio3.client.boundary;
 
 import com.cdio3.client.service.DataServiceAsync;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.HeadingElement;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
 public class ContentView{
@@ -15,25 +15,31 @@ public class ContentView{
 	}
 	
 	public void showCreateOperator(){
-		// Insert the header
-		HeadingElement createOperatorHeader = Document.get().createHElement(3);
-		createOperatorHeader.setInnerHTML("Create Operator");
-		content.getElement().appendChild(createOperatorHeader);
+		Label createOperatorHeader = new Label("Create Operator:");
+		createOperatorHeader.setStylePrimaryName("h3");
+		content.add(createOperatorHeader);
 		content.add(new CreateView(this.service));
 	}
 	
 	public void showViewOperator(){
-		HeadingElement viewOperatorHeader = Document.get().createHElement(3);
-		viewOperatorHeader.setInnerHTML("View Operators:");
-		content.getElement().appendChild(viewOperatorHeader);
+		Label viewOperatorHeader = new Label("View Operators:");
+		viewOperatorHeader.setStylePrimaryName("h3");
+		content.add(viewOperatorHeader);
 		content.add(new ViewView(this.service));
 	}
 	
 	public void showUpdateOperator(){
-		HeadingElement updateOperatorHeader = Document.get().createHElement(3);
-		updateOperatorHeader.setInnerHTML("Update Operators:");
-		content.getElement().appendChild(updateOperatorHeader);
+		Label updateOperatorHeader = new Label("Update Operators:");
+		updateOperatorHeader.setStylePrimaryName("h3");
+		content.add(updateOperatorHeader);
 		content.add(new UpdateView(this.service));
+	}
+	
+	public void showDeleteOperator(){
+		Label deleteOperatorHeader = new Label("Delete Operators:");
+		deleteOperatorHeader.setStylePrimaryName("h3");
+		content.add(deleteOperatorHeader);
+		content.add(new DeleteView(this.service));
 	}
 	
 	public void clearContent(){

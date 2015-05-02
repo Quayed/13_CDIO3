@@ -46,4 +46,16 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 		return operators;
 	}
 
+	@Override
+	public void updateOperator(OperatorDTO operator) {
+		OperatorDAO dao = new OperatorDAO();
+		try {
+			dao.updateOperator(operator);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 }

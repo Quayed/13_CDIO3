@@ -20,7 +20,9 @@ public class UpdateView extends Composite{
 	private FlexTable table;
 	private int editRow;
 	private Button cancelButton;
+	private DataServiceAsync service;
 	public UpdateView(DataServiceAsync service){
+		this.service = service;
 		table = new FlexTable();
 		initWidget(table);
 		String cellWidth = "150px";
@@ -82,13 +84,14 @@ public class UpdateView extends Composite{
 			
 			editRow = table.getCellForEvent(event).getRowIndex();
 			
-			for (int i = 0; i < 5; i++){
+			for (int i = 1; i < 5; i++){
 				TextBox editTextBox = new TextBox();
 				Label oldLabel = (Label) table.getWidget(editRow, i);
 				editTextBox.setText(oldLabel.getText());
 				table.clearCell(editRow, i);
 				table.setWidget(editRow, i, editTextBox);
 			}
+			
 			Button submitButton = new Button("Submit");
 			submitButton.addClickHandler(new SubmitClick());
 			table.clearCell(editRow, 5);
@@ -105,8 +108,28 @@ public class UpdateView extends Composite{
 
 			@Override
 			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
+				int id = Integer.parseInt(((Label) table.getWidget(editRow, 0)).getText());
+				String name = ((TextBox) table.getWidget(editRow, 1)).getText();
+				String ini = ((TextBox) table.getWidget(editRow, 2)).getText();
+				String cpr = ((TextBox) table.getWidget(editRow, 3)).getText();
+				String password = ((TextBox) table.getWidget(editRow, 4)).getText();
 				
+				OperatorDTO operator = new OperatorDTO(id, name, ini, cpr, password);
+				service.updateOperator(operator, new AsyncCallback<Void>(){
+
+					@Override
+					public void onFailure(Throwable caught) {
+						// TODO Auto-generated method stub
+						Window.alert("Something went wrong");
+					}
+
+					@Override
+					public void onSuccess(Void result) {
+						Window.alert("Operatøren er blevet opdateret");
+						cancelButton.fireEvent(new ClickEvent(){});
+					}
+					
+				});
 			}
 			
 		}
@@ -115,7 +138,7 @@ public class UpdateView extends Composite{
 
 			@Override
 			public void onClick(ClickEvent event) {
-				for(int i = 0; i < 5; i++){
+				for(int i = 1; i < 5; i++){
 					Label newLabel = new Label();
 					TextBox oldTextBox = (TextBox) table.getWidget(editRow, i);
 					newLabel.setText(oldTextBox.getText());
