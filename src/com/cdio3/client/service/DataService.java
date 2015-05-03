@@ -18,5 +18,5 @@ public interface DataService extends RemoteService {
 	
 	void deleteOperator(int id);
 	
-	void login(String userName, String password);
+	boolean login(String userName, String password);
 }

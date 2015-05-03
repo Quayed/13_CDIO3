@@ -1,5 +1,6 @@
 package com.cdio3.client.boundary;
 
+import com.cdio3.client.boundary.MainView.ILoggedInEvent;
 import com.cdio3.client.service.DataServiceAsync;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -20,8 +21,10 @@ public class LoginView extends Composite {
 
 	private static LoginUiBinder uiBinder = GWT.create(LoginUiBinder.class);
 
-	private final DataServiceAsync service;
-
+	private DataServiceAsync service;
+	private ILoggedInEvent loggedInEvent;
+	
+	
 	@UiField
 	Button loginButton;
 	
@@ -30,15 +33,17 @@ public class LoginView extends Composite {
 	
 	@UiField
 	PasswordTextBox passwordField;
+	
 
-	public LoginView(DataServiceAsync service) {
+	public LoginView(DataServiceAsync service, ILoggedInEvent loggedInEvent) {
 		this.service = service;
+		this.loggedInEvent = loggedInEvent;
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
 	@UiHandler("loginButton")
 	void handleClick(ClickEvent e) {
-		service.login(userNameField.getValue(), userNameField.getValue(), new AsyncCallback<Void>() {
+		service.login(userNameField.getValue(), userNameField.getValue(), new AsyncCallback<Boolean>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -47,8 +52,9 @@ public class LoginView extends Composite {
 			}
 
 			@Override
-			public void onSuccess(Void result) {
+			public void onSuccess(Boolean result) {
 				Window.alert("Operatør login ok");
+				loggedInEvent.loggedIn();
 			}
 
 		});

@@ -1,7 +1,6 @@
 /** Add css rules here for your application. */
 
 html{
-	width: 980px;
 	min-height: 450px;
 	margin: auto;
 }
@@ -17,7 +16,8 @@ h1{
 
 header{
 	width: 100%;
-	height: 60px;
+	height: 80px;
+	line-height: 80px;
 	background: black;
 	color: white;
 	text-align: center;
@@ -33,6 +33,21 @@ nav a{
 	font-size: 15px;	
 }
 
+#login{
+	margin: auto;
+	width: 200px;
+}
+#login input,
+#login button,
+#login label{
+	width: 100%;
+	box-sizing: border-box;
+	display: block;
+}
+#login input{
+	margin-bottom: 10px;
+}
+
 #content{
 	min-height: 300px;
 	width: 100%;
@@ -41,6 +56,8 @@ nav a{
 #content h1{
 	font-size: 50px;
 }
+
+
 footer{
 	background: #e3e3e3;
 	text-align: center;
@@ -56,6 +73,10 @@ footer{
 	font-size: 1.17em;
 	display: block;
 }
+
+
+
+
 
 table input{
 	width: 100%;

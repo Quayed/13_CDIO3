@@ -46,6 +46,6 @@ public class ContentView {
 	}
 
 	public void showStartView() {
-		content.add(new LoginView(this.service));
+		
 	}
 }

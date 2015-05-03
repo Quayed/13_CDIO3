@@ -10,20 +10,31 @@ public class MainView {
 	private ContentView content;
 	private DataServiceAsync service;
 
+	public interface ILoggedInEvent{
+		void loggedIn();
+	}
+	
 	public MainView(String url) {
 		this.service = GWT.create(DataService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) this.service;
 		endpoint.setServiceEntryPoint(url);
-
-		MenuView menu = new MenuView(this);
-		RootPanel.get("nav").add(menu);
-
-		content = new ContentView(RootPanel.get("content"), service);
-		showStartView();
+		
+		RootPanel.get("login").add(new LoginView(this.service, new ILoggedInEvent(){
+			@Override
+			public void loggedIn(){
+				RootPanel.get("login").clear();
+				showStartView();
+			}
+		}));
+		
 	}
 
 	// This method should be called on start up.
-	public void showStartView() {	
+	public void showStartView() {
+		MenuView menu = new MenuView(this);
+		RootPanel.get("nav").add(menu);
+
+		content = new ContentView(RootPanel.get("content"), service);	
 		content.clearContent();
 		content.showStartView();
 	}
