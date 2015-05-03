@@ -23,7 +23,7 @@ public class MainView {
 	}
 
 	// This method should be called on start up.
-	public void showStartView() {
+	public void showStartView() {	
 		content.clearContent();
 		content.showStartView();
 	}

@@ -17,4 +17,6 @@ public interface DataService extends RemoteService {
 	void updateOperator(OperatorDTO operator);
 	
 	void deleteOperator(int id);
+	
+	void login(String userName, String password);
 }

@@ -68,4 +68,9 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 		}
 	}
 
+	@Override
+	public void login(String userName, String password) {
+		System.out.println("Login ok");		
+	}
+
 }

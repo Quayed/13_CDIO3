@@ -15,4 +15,6 @@ public interface DataServiceAsync {
 	void updateOperator(OperatorDTO operator, AsyncCallback<Void> callback);
 	
 	void deleteOperator(int id, AsyncCallback<Void> callback);
+	
+	void login(String userName, String password, AsyncCallback<Void> callback);
 }

@@ -1,8 +1,6 @@
 package com.cdio3.client.boundary;
 
 import com.cdio3.client.service.DataServiceAsync;
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
@@ -48,6 +46,6 @@ public class ContentView {
 	}
 
 	public void showStartView() {
-
+		content.add(new LoginView(this.service));
 	}
 }
