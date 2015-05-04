@@ -11,6 +11,7 @@ public class PasswordGenerator
 										      "abcdefghijklmnopqrstuvwxyz", 
 										      "ABCDEFGHIJKLMNOPQRSTUVWXYZ", 
 										      ".+-_?=!"};
+	private static final int PASSWORD_MIN = 6;
 	
 	/**
 	 * Generates a random password, matching the needed criteria, and with length 8
@@ -18,7 +19,7 @@ public class PasswordGenerator
 	 */
 	public static String generatePassword()
 	{	
-		return generatePasswordRekursive(rand.nextInt(ALPHABET.length), 8, "", 2);
+		return generatePasswordRekursive(rand.nextInt(ALPHABET.length), PASSWORD_MIN + 2, "", 2);
 	}
 	
 	/**
@@ -92,7 +93,7 @@ public class PasswordGenerator
 			results[i] = m.matches();
 		}
 		//check length of pw
-		results[4] = pw.length() >= 6;
+		results[4] = pw.length() >= PASSWORD_MIN;
 		
 		return results;
 	}

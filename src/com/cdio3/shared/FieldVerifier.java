@@ -29,8 +29,7 @@ public class FieldVerifier
 	/**
 	 * These variables define the limits and patterns that our input should conform to. 
 	 */
-	private static int PASSWORD_MIN = 6;
-	private static int PASSWORD_MAX;
+	private static int INITIALS_MAX = 3;
 	private static Pattern CPR_PATTERN = Pattern.compile("\\d{6}-\\d{4}");
 	
 	/**
@@ -51,11 +50,28 @@ public class FieldVerifier
 		return name.length() > 3;
 	}
 	
+	/**
+	 * Check that the cpr matches the expected pattern, 
+	 * a series of 6 numbers, folowed by a "-" folowed by 4 more numbers.
+	 * @param cpr The cpr-String
+	 * @return True if the pattern matches, false otherwise.
+	 */
 	public static boolean isValidCPR(String cpr)
 	{
 		if(cpr == null)
 			return false;
 		Matcher m = CPR_PATTERN.matcher(cpr);
 		return m.matches();
+	}
+	/**
+	 * checks that the initials is between 2 and 3 chars long
+	 * @param init
+	 * @return
+	 */
+	public static boolean isValidInitials(String init)
+	{
+		if(init == null)
+			return false;
+		return init.length() > INITIALS_MAX;
 	}
 }
