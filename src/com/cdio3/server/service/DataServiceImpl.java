@@ -70,7 +70,7 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 
 	@Override
 	public boolean login(String userName, String password) {
-		if(userName.equals("") && password.equals("")){
+		if(userName.equals("10") && password.equals("02324it!")){
 			return true;
 		}
 		return false;

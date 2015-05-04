@@ -53,8 +53,13 @@ public class LoginView extends Composite {
 
 			@Override
 			public void onSuccess(Boolean result) {
-				Window.alert("Operatør login ok");
-				loggedInEvent.loggedIn();
+				if(result){
+					Window.alert("Operatør login ok");
+					loggedInEvent.loggedIn();
+				}
+				else{
+					Window.alert("Forkerte loginoplysninger");
+				}
 			}
 
 		});
