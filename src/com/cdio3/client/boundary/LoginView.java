@@ -43,17 +43,22 @@ public class LoginView extends Composite {
 
 	@UiHandler("loginButton")
 	void handleClick(ClickEvent e) {
-		service.login(userNameField.getValue(), userNameField.getValue(), new AsyncCallback<Boolean>() {
+		service.login(userNameField.getValue(), userNameField.getValue(), new AsyncCallback<Integer>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO Auto-generated method stub
 				Window.alert("Something went wrong");
 			}
-
+			
 			@Override
-			public void onSuccess(Boolean result) {
-				if(result){
+			public void onSuccess(Integer result) {
+				if(result == 1){
+					Window.alert("Admin login ok");
+					//Do admin login screen
+				} else
+					
+				if(result == 2){
 					Window.alert("Operatør login ok");
 					loggedInEvent.loggedIn();
 				}
@@ -61,6 +66,8 @@ public class LoginView extends Composite {
 					Window.alert("Forkerte loginoplysninger");
 				}
 			}
+
+			
 
 		});
 	}

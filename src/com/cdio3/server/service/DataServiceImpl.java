@@ -2,6 +2,8 @@ package com.cdio3.server.service;
 
 import java.util.List;
 
+import org.eclipse.jdt.core.dom.PostfixExpression.Operator;
+
 import com.cdio3.client.service.DataService;
 import com.cdio3.server.PasswordGenerator;
 import com.cdio3.server.dal.DALException;
@@ -70,12 +72,26 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 	}
 
 	@Override
-	public boolean login(String userName, String password) {
-		return true;
-	/*	if(userName.equals("10") && password.equals("02324it!")){
-			return true;
+	/**
+	 * @param 
+	 * @return int representing; 0 = wrong info , 1 = admin , 2 = user
+	 */
+	public Integer login(String userID, String password) {
+		OperatorDAO dao = new OperatorDAO();
+		try {
+			OperatorDTO operator = dao.getOperator(Integer.parseInt(userID));
+			if(operator.getPassword().equals(password)){
+				if(Integer.parseInt(userID) == 10){
+					return 1;
+				} else return 2;
+			} else return 0;
+		} catch (NumberFormatException e) {
+			System.out.println("Ikke et gyldigt ID");
+			e.printStackTrace();
+		} catch (DALException e) {
+			System.out.println("Datalag's fejl!");
+			e.printStackTrace();
 		}
-		return false;
-*/	}
-
+		return -1;
+	}
 }
