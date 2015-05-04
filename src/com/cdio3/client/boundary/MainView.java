@@ -35,28 +35,15 @@ public class MainView {
 		RootPanel.get("nav").add(menu);
 
 		content = new ContentView(RootPanel.get("content"), service);	
-		content.clearContent();
-		content.showStartView();
+		content.showViewOperator();
 	}
 
 	public void showCreateOperator() {
-		content.clearContent();
 		content.showCreateOperator();
 	}
 
 	public void showViewOperator() {
-		content.clearContent();
 		content.showViewOperator();
-	}
-
-	public void showUpdateOperator() {
-		content.clearContent();
-		content.showUpdateOperator();
-	}
-
-	public void showDeleteOperator() {
-		content.clearContent();
-		content.showDeleteOperator();
 	}
 
 }

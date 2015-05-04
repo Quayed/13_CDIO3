@@ -14,6 +14,7 @@ public class ContentView {
 	}
 
 	public void showCreateOperator() {
+		content.clear();
 		Label createOperatorHeader = new Label("Create Operator:");
 		createOperatorHeader.setStylePrimaryName("h3");
 		content.add(createOperatorHeader);
@@ -21,31 +22,11 @@ public class ContentView {
 	}
 
 	public void showViewOperator() {
+		content.clear();
 		Label viewOperatorHeader = new Label("View Operators:");
 		viewOperatorHeader.setStylePrimaryName("h3");
 		content.add(viewOperatorHeader);
 		content.add(new ViewView(this.service));
 	}
-
-	public void showUpdateOperator() {
-		Label updateOperatorHeader = new Label("Update Operators:");
-		updateOperatorHeader.setStylePrimaryName("h3");
-		content.add(updateOperatorHeader);
-		content.add(new UpdateView(this.service));
-	}
-
-	public void showDeleteOperator() {
-		Label deleteOperatorHeader = new Label("Delete Operators:");
-		deleteOperatorHeader.setStylePrimaryName("h3");
-		content.add(deleteOperatorHeader);
-		content.add(new DeleteView(this.service));
-	}
-
-	public void clearContent() {
-		content.clear();
-	}
-
-	public void showStartView() {
-		
-	}
+	
 }

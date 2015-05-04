@@ -48,6 +48,7 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 	@Override
 	public void updateOperator(OperatorDTO operator) {
 		OperatorDAO dao = new OperatorDAO();
+		System.out.println(dao);
 		try {
 			dao.updateOperator(operator);
 		} catch (DALException e) {
@@ -70,10 +71,11 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 
 	@Override
 	public boolean login(String userName, String password) {
-		if(userName.equals("10") && password.equals("02324it!")){
+		return true;
+	/*	if(userName.equals("10") && password.equals("02324it!")){
 			return true;
 		}
 		return false;
-	}
+*/	}
 
 }

@@ -33,27 +33,7 @@ public class MenuView extends Composite {
 			}
 		});
 
-		Anchor updateOperatorAnchor = new Anchor();
-		updateOperatorAnchor.setText("Update Operator");
-		updateOperatorAnchor.setHref("#");
-		updateOperatorAnchor.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				mainView.showUpdateOperator();
-			}
-		});
-
-		Anchor deleteOperatorAnchor = new Anchor();
-		deleteOperatorAnchor.setText("Delete Operator");
-		deleteOperatorAnchor.setHref("#");
-		deleteOperatorAnchor.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				mainView.showDeleteOperator();
-			}
-		});
-		
 		menuPanel.add(createOperatorAnchor);
 		menuPanel.add(viewOperatorAnchor);
-		menuPanel.add(updateOperatorAnchor);
-		menuPanel.add(deleteOperatorAnchor);
 	}
 }
