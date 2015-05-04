@@ -2,6 +2,7 @@ package com.cdio3.server.dal;
 
 import java.util.List;
 
+import com.cdio3.shared.DALException;
 import com.cdio3.shared.OperatorDTO;
 
 public interface IOperatorDAO {

@@ -1,5 +1,8 @@
 package com.cdio3.shared;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * <p>
  * FieldVerifier validates that the name the user enters is valid.
@@ -20,8 +23,15 @@ package com.cdio3.shared;
  * JavaScript (such as Widgets) cannot be run on the server.
  * </p>
  */
-public class FieldVerifier {
-
+public class FieldVerifier
+{
+	//The regex tester I use for all my regex: https://regex101.com/ -Magnus
+	/**
+	 * These variables define the limits and patterns that our input should conform to. 
+	 */
+	private static int INITIALS_MAX = 3;
+	private static Pattern CPR_PATTERN = Pattern.compile("\\d{6}-\\d{4}");
+	
 	/**
 	 * Verifies that the specified name is valid for our service.
 	 * 
@@ -33,10 +43,35 @@ public class FieldVerifier {
 	 * @param name the name to validate
 	 * @return true if valid, false if invalid
 	 */
-	public static boolean isValidName(String name) {
-		if (name == null) {
+	public static boolean isValidName(String name)
+	{
+		if (name == null)
 			return false;
-		}
 		return name.length() > 3;
+	}
+	
+	/**
+	 * Check that the cpr matches the expected pattern, 
+	 * a series of 6 numbers, folowed by a "-" folowed by 4 more numbers.
+	 * @param cpr The cpr-String
+	 * @return True if the pattern matches, false otherwise.
+	 */
+	public static boolean isValidCPR(String cpr)
+	{
+		if(cpr == null)
+			return false;
+		Matcher m = CPR_PATTERN.matcher(cpr);
+		return m.matches();
+	}
+	/**
+	 * checks that the initials is between 2 and 3 chars long
+	 * @param init
+	 * @return
+	 */
+	public static boolean isValidInitials(String init)
+	{
+		if(init == null)
+			return false;
+		return init.length() > INITIALS_MAX;
 	}
 }

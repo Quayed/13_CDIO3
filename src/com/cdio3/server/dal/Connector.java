@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.cdio3.shared.DALException;
+
 public class Connector {
 
 	private static Connection conn;
