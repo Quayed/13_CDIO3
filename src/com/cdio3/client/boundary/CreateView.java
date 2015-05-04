@@ -1,6 +1,7 @@
 package com.cdio3.client.boundary;
 
 import com.cdio3.client.service.DataServiceAsync;
+import com.cdio3.shared.DALException;
 import com.cdio3.shared.OperatorDTO;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -59,13 +60,26 @@ public class CreateView extends Composite {
 
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert("Some error happend");
+						
+				
+						
+						if (caught instanceof DALException) {
+							Window.alert("Kunne ikke forbinde til databasen.");
+						}
+						
+						else {
+							Window.alert("I give up");
+						}
+						
 
 					}
 
 					@Override
 					public void onSuccess(OperatorDTO newOperator) {
-						Window.alert("Operatør oprettet - password er: " + newOperator.getOprID() + " og password er " + newOperator.getPassword());
+						Window.alert("Operatør oprettet med ID: " + newOperator.getOprID() + " og password: " + newOperator.getPassword());
+						oprNameTextBox.setText("");
+						cprTextBox.setText("");
+						iniTextBox.setText("");
 
 					}
 

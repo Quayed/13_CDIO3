@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.cdio3.client.service.DataService;
 import com.cdio3.server.PasswordGenerator;
-import com.cdio3.server.dal.DALException;
 import com.cdio3.server.dal.OperatorDAO;
+import com.cdio3.shared.DALException;
 import com.cdio3.shared.OperatorDTO;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -18,17 +18,13 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 	}
 
 	@Override
-	public OperatorDTO createOperator(OperatorDTO operator) {
+	public OperatorDTO createOperator(OperatorDTO operator) throws DALException {
 		String newPassword;
 		newPassword = PasswordGenerator.generatePassword();
 		operator.setPassword(newPassword);
 		OperatorDAO dao = new OperatorDAO();
-		try {
-			operator = dao.createOperator(operator);
-		} catch (DALException e) {
-			e.printStackTrace();
-			// Something needs to happen here - don't know what tho.
-		}
+		operator = dao.createOperator(operator);
+
 		return operator;
 	}
 

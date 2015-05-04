@@ -116,7 +116,7 @@ public class ViewView extends Composite {
 				@Override
 				public void onFailure(Throwable caught) {
 					// TODO Auto-generated method stub
-					Window.alert("Something went wrong");
+					Window.alert("Operatøren blev IKKE oprettet, der kunne ikke komme forbindelse til din database");
 				}
 
 				@Override
