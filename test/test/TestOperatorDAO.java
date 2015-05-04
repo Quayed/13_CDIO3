@@ -10,7 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.cdio3.server.dal.Connector;
-import com.cdio3.server.dal.DALException;
+import com.cdio3.shared.DALException;
 import com.cdio3.server.dal.IOperatorDAO;
 import com.cdio3.server.dal.OperatorDAO;
 import com.cdio3.shared.OperatorDTO;
