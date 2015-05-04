@@ -3,10 +3,10 @@ package com.cdio3.server.service;
 import java.util.List;
 
 import com.cdio3.client.service.DataService;
-import com.cdio3.server.PasswordGenerator;
 import com.cdio3.server.dal.OperatorDAO;
 import com.cdio3.shared.DALException;
 import com.cdio3.shared.OperatorDTO;
+import com.cdio3.shared.PasswordGenerator;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class DataServiceImpl extends RemoteServiceServlet implements DataService {
