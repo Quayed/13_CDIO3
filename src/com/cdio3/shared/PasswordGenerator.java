@@ -1,4 +1,4 @@
-package com.cdio3.server;
+package com.cdio3.shared;
 
 import java.util.Random;
 import java.util.regex.Matcher;

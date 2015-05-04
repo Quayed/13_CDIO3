@@ -1,5 +1,8 @@
 package com.cdio3.shared;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * <p>
  * FieldVerifier validates that the name the user enters is valid.
@@ -20,8 +23,16 @@ package com.cdio3.shared;
  * JavaScript (such as Widgets) cannot be run on the server.
  * </p>
  */
-public class FieldVerifier {
-
+public class FieldVerifier
+{
+	//The regex tester I use for all my regex: https://regex101.com/ -Magnus
+	/**
+	 * These variables define the limits and patterns that our input should conform to. 
+	 */
+	private static int PASSWORD_MIN = 6;
+	private static int PASSWORD_MAX;
+	private static Pattern CPR_PATTERN = Pattern.compile("\\d{6}-\\d{4}");
+	
 	/**
 	 * Verifies that the specified name is valid for our service.
 	 * 
@@ -33,10 +44,18 @@ public class FieldVerifier {
 	 * @param name the name to validate
 	 * @return true if valid, false if invalid
 	 */
-	public static boolean isValidName(String name) {
-		if (name == null) {
+	public static boolean isValidName(String name)
+	{
+		if (name == null)
 			return false;
-		}
 		return name.length() > 3;
+	}
+	
+	public static boolean isValidCPR(String cpr)
+	{
+		if(cpr == null)
+			return false;
+		Matcher m = CPR_PATTERN.matcher(cpr);
+		return m.matches();
 	}
 }
