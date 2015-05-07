@@ -1,6 +1,7 @@
 package com.cdio3.client.boundary;
 
 import com.cdio3.client.boundary.admin.AdminView;
+import com.cdio3.client.boundary.operator.OperatorView;
 import com.cdio3.client.service.DataService;
 import com.cdio3.client.service.DataServiceAsync;
 import com.google.gwt.core.shared.GWT;
@@ -24,20 +25,17 @@ public class MainView {
 			@Override
 			public void adminLoggedIn(){
 				RootPanel.get("content").clear();
-				adminView();
+			//	RootPanel.get("content").add(new OperatorView(service));
+				RootPanel.get("content").add(new AdminView(service));
 			}
 
 			@Override
 			public void operatorLoggedIn() {
-				
+				RootPanel.get("content").clear();
+				RootPanel.get("content").add(new OperatorView(service));
 			}
 		}));
 		
-	}
-
-	public void adminView(){
-		AdminView adminView = new AdminView(service);
-		RootPanel.get("content").add(adminView);
 	}
 
 }
