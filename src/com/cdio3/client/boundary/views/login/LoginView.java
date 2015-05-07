@@ -1,4 +1,4 @@
-package com.cdio3.client.boundary.views;
+package com.cdio3.client.boundary.views.login;
 
 import com.cdio3.client.boundary.MainView.ILoggedInEvent;
 import com.cdio3.client.service.DataServiceAsync;

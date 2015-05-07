@@ -1,7 +1,7 @@
 package com.cdio3.client.boundary;
 
-import com.cdio3.client.boundary.views.LoginView;
 import com.cdio3.client.boundary.views.admin.AdminView;
+import com.cdio3.client.boundary.views.login.LoginView;
 import com.cdio3.client.boundary.views.operator.OperatorView;
 import com.cdio3.client.service.DataService;
 import com.cdio3.client.service.DataServiceAsync;
