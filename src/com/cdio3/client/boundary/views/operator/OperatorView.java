@@ -10,12 +10,33 @@ public class OperatorView extends AbstractContentView {
 
 	public OperatorView(DataServiceAsync service) {
 		this.service = service;
+		
+		weightAppView();
+		
+	    addNavItem("Weight App", new ScheduledCommand() {
+			@Override
+			public void execute() {
+				weightAppView();
+			}
+		});
+	    
 	    addNavItem("Change password", new ScheduledCommand() {
 			@Override
 			public void execute() {
-				
+				changePasswordView();
 			}
 		});
+
+	}
+	
+	private void weightAppView() {
+		setHeaderLabel("Weight App");
+		setView(new WeightAppWidget(service));
+	}
+	
+	private void changePasswordView() {
+		setHeaderLabel("Change password");
+		setView(new ChangePasswordWidget(service));
 	}
 
 }
