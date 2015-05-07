@@ -14,21 +14,14 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class AdminView extends Composite {
 	
-	interface AdminUiBinder extends UiBinder<Widget, AdminView> {
-	}
+	interface AdminUiBinder extends UiBinder<Widget, AdminView> {}
 
 	private static AdminUiBinder uiBinder = GWT.create(AdminUiBinder.class);
 	
-	@UiField
-	Label headerLabel;
+	@UiField MenuBar navbar;
+	@UiField Label headerLabel;
+	@UiField FlowPanel contentPanel;
 	
-	@UiField
-	MenuBar navbar;
-	
-	@UiField
-	FlowPanel contentPanel;
-	
-	private RootPanel content;
 	private DataServiceAsync service;
 
 	public AdminView(RootPanel content, DataServiceAsync service) {
@@ -36,7 +29,7 @@ public class AdminView extends Composite {
 		this.service = service;
 		initWidget(uiBinder.createAndBindUi(this));
 		headerLabel.setStylePrimaryName("h3");
-
+		contentPanel.setStylePrimaryName("content");
 		operatorsView();
 
 	    navbar.addItem("Operators", new ScheduledCommand() {
@@ -65,6 +58,8 @@ public class AdminView extends Composite {
 		contentPanel.clear();
 		contentPanel.add(new CreateView(this.service));		
 	}
+	
+	private RootPanel content;
 	
 	public void showCreateOperator() {
 		content.clear();

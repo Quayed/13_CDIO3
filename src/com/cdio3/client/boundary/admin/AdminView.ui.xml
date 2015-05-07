@@ -3,10 +3,7 @@
     xmlns:g='urn:import:com.google.gwt.user.client.ui'>
   <g:HTMLPanel>
   	<g:MenuBar ui:field="navbar"></g:MenuBar>
-  	<div class="content">
-  		<g:Label ui:field="headerLabel"></g:Label>
-  		<g:FlowPanel ui:field="contentPanel"></g:FlowPanel>
-  	</div>
+  	<g:Label ui:field="headerLabel"></g:Label>
+  	<g:FlowPanel ui:field="contentPanel"></g:FlowPanel>
   </g:HTMLPanel>
-
 </ui:UiBinder>
