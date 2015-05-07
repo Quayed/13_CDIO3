@@ -31,18 +31,18 @@ header{
 	cursor: pointer !important;
 }
 
-#login{
+.login{
 	margin: auto;
 	width: 200px;
 }
-#login input,
-#login button,
-#login label{
+.login input,
+.login button,
+.login label{
 	width: 100%;
 	box-sizing: border-box;
 	display: block;
 }
-#login input{
+.login input{
 	margin-bottom: 10px;
 }
 

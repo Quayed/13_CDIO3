@@ -3,14 +3,16 @@
     xmlns:g='urn:import:com.google.gwt.user.client.ui'>
 
   <g:HTMLPanel>
-  	<h2>Login</h2>
-  	<label>Username</label>
-  	<g:TextBox ui:field="userNameField" value="10" />
-  	
-  	<label>Password</label>
-  	<g:PasswordTextBox ui:field="passwordField" value="02324it!" />
-  	
-    <g:Button ui:field='loginButton'>Login</g:Button>
+  	<div class="login">
+	  	<h2>Login</h2>
+	  	<label>Username</label>
+	  	<g:TextBox ui:field="userNameField" value="10" />
+	  	
+	  	<label>Password</label>
+	  	<g:PasswordTextBox ui:field="passwordField" value="02324it!" />
+	  	
+	    <g:Button ui:field='loginButton'>Login</g:Button>
+    </div>
   </g:HTMLPanel>
 
 </ui:UiBinder>

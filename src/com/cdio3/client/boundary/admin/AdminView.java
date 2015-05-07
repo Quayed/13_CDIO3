@@ -9,7 +9,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MenuBar;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class AdminView extends Composite {
@@ -24,12 +23,13 @@ public class AdminView extends Composite {
 	
 	private DataServiceAsync service;
 
-	public AdminView(RootPanel content, DataServiceAsync service) {
-		this.content = content;
+	public AdminView(DataServiceAsync service) {
 		this.service = service;
 		initWidget(uiBinder.createAndBindUi(this));
+		
 		headerLabel.setStylePrimaryName("h3");
 		contentPanel.setStylePrimaryName("content");
+		
 		operatorsView();
 
 	    navbar.addItem("Operators", new ScheduledCommand() {
@@ -53,28 +53,10 @@ public class AdminView extends Composite {
 		contentPanel.add(new ViewView(this.service));
 	}
 	
-	public void createView(){
+	private void createView(){
 		headerLabel.setText("Create Operator");
 		contentPanel.clear();
 		contentPanel.add(new CreateView(this.service));		
-	}
-	
-	private RootPanel content;
-	
-	public void showCreateOperator() {
-		content.clear();
-		Label createOperatorHeader = new Label("Create Operator:");
-		createOperatorHeader.setStylePrimaryName("h3");
-		content.add(createOperatorHeader);
-		content.add(new CreateView(this.service));
-	}
-
-	public void showViewOperator() {
-		content.clear();
-		Label viewOperatorHeader = new Label("View Operators:");
-		viewOperatorHeader.setStylePrimaryName("h3");
-		content.add(viewOperatorHeader);
-		content.add(new ViewView(this.service));
 	}
 	
 }
