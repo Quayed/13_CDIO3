@@ -11,7 +11,8 @@ public class MainView {
 	private DataServiceAsync service;
 
 	public interface ILoggedInEvent{
-		void loggedIn();
+		void adminLoggedIn();
+		void operatorLoggedIn();
 	}
 	
 	public MainView(String url) {
@@ -21,9 +22,14 @@ public class MainView {
 		
 		RootPanel.get("login").add(new LoginView(this.service, new ILoggedInEvent(){
 			@Override
-			public void loggedIn(){
+			public void adminLoggedIn(){
 				RootPanel.get("login").clear();
 				showStartView();
+			}
+
+			@Override
+			public void operatorLoggedIn() {
+				
 			}
 		}));
 		

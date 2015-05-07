@@ -17,24 +17,23 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class LoginView extends Composite {
 
-	interface LoginUiBinder extends UiBinder<Widget, LoginView> {}
+	interface LoginUiBinder extends UiBinder<Widget, LoginView> {
+	}
 
 	private static LoginUiBinder uiBinder = GWT.create(LoginUiBinder.class);
 
 	private DataServiceAsync service;
 	private ILoggedInEvent loggedInEvent;
-	
-	
+
+	@UiField
+	TextBox userNameField;
+
+	@UiField
+	PasswordTextBox passwordField;
+
 	@UiField
 	Button loginButton;
 	
-	@UiField
-	TextBox userNameField;
-	
-	@UiField
-	PasswordTextBox passwordField;
-	
-
 	public LoginView(DataServiceAsync service, ILoggedInEvent loggedInEvent) {
 		this.service = service;
 		this.loggedInEvent = loggedInEvent;
@@ -43,31 +42,26 @@ public class LoginView extends Composite {
 
 	@UiHandler("loginButton")
 	void handleClick(ClickEvent e) {
-		service.login(userNameField.getValue(), userNameField.getValue(), new AsyncCallback<Integer>() {
+		service.login(userNameField.getValue(), passwordField.getValue(), new AsyncCallback<Integer>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO Auto-generated method stub
 				Window.alert("Operatør login ikke accepteret");
 			}
-			
+
 			@Override
 			public void onSuccess(Integer result) {
-				if(result == 1){
+				if (result == 1) {
 					Window.alert("Admin login ok");
-					//Do admin login screen
-				} else
-					
-				if(result == 2){
+					loggedInEvent.adminLoggedIn();
+				} else if (result == 2) {
 					Window.alert("Operatør login ok");
-					loggedInEvent.loggedIn();
-				}
-				else{
+					loggedInEvent.operatorLoggedIn();
+				} else {
 					Window.alert("Forkerte loginoplysninger");
 				}
 			}
-
-			
 
 		});
 	}

@@ -74,20 +74,38 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 	 */
 	public Integer login(String userID, String password) {
 		OperatorDAO dao = new OperatorDAO();
+		int oprID;
+		OperatorDTO operator;
 		try {
-			OperatorDTO operator = dao.getOperator(Integer.parseInt(userID));
-			if(operator.getPassword().equals(password)){
-				if(Integer.parseInt(userID) == 10){
-					return 1;
-				} else return 2;
-			} else return 0;
+			oprID = Integer.parseInt(userID);
 		} catch (NumberFormatException e) {
 			System.out.println("Ikke et gyldigt ID");
-			e.printStackTrace();
+			return 0;
+		}
+		
+		// is admin
+		if(oprID == 10){
+			System.out.println("pass: "+password);
+			if(password.equals("02324it!"))
+				return 1;
+			else
+				return 0;
+		}
+		
+		try {
+			operator = dao.getOperator(oprID);
+			if(operator == null){
+				return 0;
+			}
 		} catch (DALException e) {
 			System.out.println("Datalag's fejl!");
-			e.printStackTrace();
+			return 0;
 		}
-		return -1;
+		
+		if(operator.getPassword().equals(password)){
+			return 2;
+		}
+		else
+			return 0;
 	}
 }
