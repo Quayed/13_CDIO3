@@ -23,14 +23,12 @@ header{
 	text-align: center;
 }
 
-nav{
-	height: 30px;
-	background: #c3c3c3;
+.gwt-MenuBar.gwt-MenuBar-horizontal{
+
 }
 
-nav a{
-	margin-right: 10px;
-	font-size: 15px;	
+.gwt-MenuItem{
+	cursor: pointer !important;
 }
 
 #login{

@@ -1,5 +1,6 @@
-package com.cdio3.client.boundary;
+package com.cdio3.client.boundary.old;
 
+import com.cdio3.client.boundary.MainView;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Anchor;

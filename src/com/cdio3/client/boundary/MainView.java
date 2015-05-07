@@ -1,5 +1,8 @@
 package com.cdio3.client.boundary;
 
+import com.cdio3.client.boundary.admin.AdminView;
+import com.cdio3.client.boundary.old.ContentView;
+import com.cdio3.client.boundary.old.MenuView;
 import com.cdio3.client.service.DataService;
 import com.cdio3.client.service.DataServiceAsync;
 import com.google.gwt.core.shared.GWT;
@@ -24,7 +27,7 @@ public class MainView {
 			@Override
 			public void adminLoggedIn(){
 				RootPanel.get("login").clear();
-				showStartView();
+				adminView();
 			}
 
 			@Override
@@ -35,6 +38,13 @@ public class MainView {
 		
 	}
 
+	public void adminView(){
+		AdminView adminView = new AdminView(RootPanel.get("content"), service);
+		RootPanel.get("content").add(adminView);
+	}
+	
+	
+	
 	// This method should be called on start up.
 	public void showStartView() {
 		MenuView menu = new MenuView(this);

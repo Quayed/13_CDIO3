@@ -1,5 +1,7 @@
-package com.cdio3.client.boundary;
+package com.cdio3.client.boundary.old;
 
+import com.cdio3.client.boundary.admin.CreateView;
+import com.cdio3.client.boundary.admin.ViewView;
 import com.cdio3.client.service.DataServiceAsync;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;

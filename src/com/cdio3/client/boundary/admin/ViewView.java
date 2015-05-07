@@ -1,4 +1,4 @@
-package com.cdio3.client.boundary;
+package com.cdio3.client.boundary.admin;
 
 import java.util.List;
 
@@ -160,20 +160,22 @@ public class ViewView extends Composite {
 		public void onClick(ClickEvent event) {
 			deleteRow = table.getCellForEvent(event).getRowIndex();
 			int operatorID = Integer.parseInt(((Label) table.getWidget(deleteRow, 0)).getText());
-			service.deleteOperator(operatorID, new AsyncCallback<Void>(){
-
-				@Override
-				public void onFailure(Throwable caught) {
-					Window.alert("Something went wrong");
-				}
-
-				@Override
-				public void onSuccess(Void result) {
-					table.removeRow(deleteRow);
-					Window.alert("The Operator has been deleted");
-				}
-				
-			});
+			if(Window.confirm("Are you sure to delete operator "+operatorID+"?")){
+				service.deleteOperator(operatorID, new AsyncCallback<Void>(){
+	
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("Something went wrong");
+					}
+	
+					@Override
+					public void onSuccess(Void result) {
+						table.removeRow(deleteRow);
+						Window.alert("The Operator has been deleted");
+					}
+					
+				});
+			}
 		}
 		
 	}
