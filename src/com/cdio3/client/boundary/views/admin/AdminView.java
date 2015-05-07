@@ -30,12 +30,12 @@ public class AdminView extends AbstractContentView {
 	
 	private void operatorsView() {
 		setHeaderLabel("View Operators");
-		setView(new ViewView(service));
+		setView(new OperatorsWidget(service));
 	}
 	
 	private void createView(){
 		setHeaderLabel("Create Operator");
-		setView(new CreateView(service));
+		setView(new CreateWidget(service));
 	}
 	
 }

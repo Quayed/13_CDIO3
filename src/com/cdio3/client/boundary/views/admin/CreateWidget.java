@@ -14,14 +14,14 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class CreateView extends Composite {
+public class CreateWidget extends Composite {
 	private VerticalPanel view;
 	private DataServiceAsync serverConn;
 	private TextBox oprNameTextBox;
 	private TextBox iniTextBox;
 	private TextBox cprTextBox;
 
-	public CreateView(DataServiceAsync service) {
+	public CreateWidget(DataServiceAsync service) {
 
 		this.serverConn = service;
 

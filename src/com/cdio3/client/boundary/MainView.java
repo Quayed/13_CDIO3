@@ -12,21 +12,20 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class MainView {
 	private DataServiceAsync service;
 
-	public interface ILoggedInEvent{
+	public interface ILoggedInEvent {
 		void adminLoggedIn();
 		void operatorLoggedIn();
 	}
-	
+
 	public MainView(String url) {
 		this.service = GWT.create(DataService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) this.service;
 		endpoint.setServiceEntryPoint(url);
-		
-		RootPanel.get("content").add(new LoginView(this.service, new ILoggedInEvent(){
+
+		RootPanel.get("content").add(new LoginView(this.service, new ILoggedInEvent() {
 			@Override
-			public void adminLoggedIn(){
+			public void adminLoggedIn() {
 				RootPanel.get("content").clear();
-			//	RootPanel.get("content").add(new OperatorView(service));
 				RootPanel.get("content").add(new AdminView(service));
 			}
 
@@ -36,7 +35,7 @@ public class MainView {
 				RootPanel.get("content").add(new OperatorView(service));
 			}
 		}));
-		
+
 	}
 
 }

@@ -15,13 +15,13 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 
-public class ViewView extends Composite {
+public class OperatorsWidget extends Composite {
 	private FlexTable table;
 	private int editRow;
 	private Button cancelButton;
 	private DataServiceAsync service;
 
-	public ViewView(DataServiceAsync service) {
+	public OperatorsWidget(DataServiceAsync service) {
 		this.service = service;
 		table = new FlexTable();
 		initWidget(table);
