@@ -1,4 +1,4 @@
-package com.cdio3.client.boundary;
+package com.cdio3.client.boundary.views;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;

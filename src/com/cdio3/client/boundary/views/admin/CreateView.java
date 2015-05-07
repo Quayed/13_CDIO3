@@ -1,4 +1,4 @@
-package com.cdio3.client.boundary.admin;
+package com.cdio3.client.boundary.views.admin;
 
 import com.cdio3.client.service.DataServiceAsync;
 import com.cdio3.shared.DALException;

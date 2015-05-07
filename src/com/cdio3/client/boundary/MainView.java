@@ -1,7 +1,8 @@
 package com.cdio3.client.boundary;
 
-import com.cdio3.client.boundary.admin.AdminView;
-import com.cdio3.client.boundary.operator.OperatorView;
+import com.cdio3.client.boundary.views.LoginView;
+import com.cdio3.client.boundary.views.admin.AdminView;
+import com.cdio3.client.boundary.views.operator.OperatorView;
 import com.cdio3.client.service.DataService;
 import com.cdio3.client.service.DataServiceAsync;
 import com.google.gwt.core.shared.GWT;

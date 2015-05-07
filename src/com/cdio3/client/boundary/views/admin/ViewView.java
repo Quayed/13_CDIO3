@@ -1,4 +1,4 @@
-package com.cdio3.client.boundary.admin;
+package com.cdio3.client.boundary.views.admin;
 
 import java.util.List;
 
