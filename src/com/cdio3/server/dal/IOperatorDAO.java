@@ -10,7 +10,7 @@ public interface IOperatorDAO {
 
 	List<OperatorDTO> getOperatorList() throws DALException;
 
-	OperatorDTO createOperator(OperatorDTO opr) throws DALException;
+	void createOperator(OperatorDTO opr) throws DALException;
 
 	void updateOperator(OperatorDTO opr) throws DALException;
 	

@@ -2,8 +2,6 @@ package com.cdio3.server.service;
 
 import java.util.List;
 
-import org.eclipse.jdt.core.dom.PostfixExpression.Operator;
-
 import com.cdio3.client.service.DataService;
 import com.cdio3.server.dal.OperatorDAO;
 import com.cdio3.shared.DALException;
@@ -13,6 +11,8 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class DataServiceImpl extends RemoteServiceServlet implements DataService {
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public String sayHello(String message) {
 		System.out.println(message);
@@ -21,11 +21,11 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 
 	@Override
 	public OperatorDTO createOperator(OperatorDTO operator) throws DALException {
-		String newPassword;
-		newPassword = PasswordGenerator.generatePassword();
-		operator.setPassword(newPassword);
 		OperatorDAO dao = new OperatorDAO();
-		operator = dao.createOperator(operator);
+		
+		operator.setPassword(PasswordGenerator.generatePassword());
+		
+		dao.createOperator(operator);
 
 		return operator;
 	}
