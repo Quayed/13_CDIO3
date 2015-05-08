@@ -8,6 +8,7 @@ import com.cdio3.shared.DALException;
 import com.cdio3.shared.OperatorDTO;
 import com.cdio3.shared.PasswordGenerator;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.cdio3.shared.FieldVerifier;
 
 public class DataServiceImpl extends RemoteServiceServlet implements DataService {
 
@@ -21,12 +22,17 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 
 	@Override
 	public OperatorDTO createOperator(OperatorDTO operator) throws DALException {
-		OperatorDAO dao = new OperatorDAO();
-		
-		operator.setPassword(PasswordGenerator.generatePassword());
-		
-		dao.createOperator(operator);
+		if (FieldVerifier.isValidCPR(operator.getCpr()) && FieldVerifier.isValidName(operator.getOprName())
+				&& FieldVerifier.isValidInitials(operator.getIni())) {
+			OperatorDAO dao = new OperatorDAO();
 
+			operator.setPassword(PasswordGenerator.generatePassword());
+
+			dao.createOperator(operator);
+
+		} else {
+			// Do some error handling
+		}
 		return operator;
 	}
 
@@ -44,16 +50,19 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 	}
 
 	@Override
-	public void updateOperator(OperatorDTO operator) {
-		OperatorDAO dao = new OperatorDAO();
-		System.out.println(dao);
-		try {
-			dao.updateOperator(operator);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public void updateOperator(OperatorDTO operator)  {
+		if (FieldVerifier.isValidCPR(operator.getCpr()) && FieldVerifier.isValidName(operator.getOprName())
+				&& FieldVerifier.isValidInitials(operator.getIni()) && FieldVerifier.isValidPassword(operator.getPassword())) {
+			OperatorDAO dao = new OperatorDAO();
+			try {
+				dao.updateOperator(operator);
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			// Do some error handling.
 		}
-
 	}
 
 	@Override
@@ -82,30 +91,29 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 			System.out.println("Ikke et gyldigt ID");
 			return 0;
 		}
-		
+
 		// is admin
-		if(oprID == 10){
-			System.out.println("pass: "+password);
-			if(password.equals("02324it!"))
+		if (oprID == 10) {
+			System.out.println("pass: " + password);
+			if (password.equals("02324it!"))
 				return 1;
 			else
 				return 0;
 		}
-		
+
 		try {
 			operator = dao.getOperator(oprID);
-			if(operator == null){
+			if (operator == null) {
 				return 0;
 			}
 		} catch (DALException e) {
 			System.out.println("Datalag's fejl!");
 			return 0;
 		}
-		
-		if(operator.getPassword().equals(password)){
+
+		if (operator.getPassword().equals(password)) {
 			return 2;
-		}
-		else
+		} else
 			return 0;
 	}
 }

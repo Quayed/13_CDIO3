@@ -74,4 +74,8 @@ public class FieldVerifier
 			return false;
 		return init.length() > INITIALS_MAX;
 	}
+	
+	public static boolean isValidPassword(String password){
+		return PasswordGenerator.checkPassword(password);
+	}
 }
