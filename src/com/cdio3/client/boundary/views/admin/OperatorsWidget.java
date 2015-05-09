@@ -132,6 +132,7 @@ public class OperatorsWidget extends Composite {
 			KeyUpEvent.fireNativeEvent(Document.get().createKeyUpEvent(false, false, false, false, 65), oprCPR);
 			KeyUpEvent.fireNativeEvent(Document.get().createKeyUpEvent(false, false, false, false, 65), oprPassword);
 
+			submitButton.setEnabled(false);
 		}
 	}
 	
