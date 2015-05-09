@@ -6,8 +6,6 @@ import com.cdio3.shared.OperatorDTO;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public interface DataServiceAsync {
-	void sayHello(String message, AsyncCallback<String> callback);
-
 	void createOperator(OperatorDTO operator, AsyncCallback<OperatorDTO> callback);
 
 	void getAllOperators(AsyncCallback<List<OperatorDTO>> callback);

@@ -9,8 +9,6 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("dataConnection")
 public interface DataService extends RemoteService {
-	String sayHello(String message);
-
 	OperatorDTO createOperator(OperatorDTO operator) throws DALException;
 
 	List<OperatorDTO> getAllOperators();

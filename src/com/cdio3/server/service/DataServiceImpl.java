@@ -15,12 +15,6 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public String sayHello(String message) {
-		System.out.println(message);
-		return message.toUpperCase();
-	}
-
-	@Override
 	public OperatorDTO createOperator(OperatorDTO operator) throws DALException {
 		if (FieldVerifier.isValidCPR(operator.getCpr()) && FieldVerifier.isValidName(operator.getOprName())
 				&& FieldVerifier.isValidInitials(operator.getIni())) {
