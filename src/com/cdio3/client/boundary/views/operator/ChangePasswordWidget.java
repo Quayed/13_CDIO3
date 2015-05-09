@@ -42,7 +42,7 @@ public class ChangePasswordWidget extends Composite {
 			@Override
 			public void onFailure(Throwable caught) {
 				if (caught instanceof DALException) {
-					Window.alert("Fejl: "+caught.getMessage());
+					Window.alert("Error: "+caught.getMessage());
 				}
 				else {
 					Window.alert("I give up");
@@ -51,7 +51,7 @@ public class ChangePasswordWidget extends Composite {
 
 			@Override
 			public void onSuccess(Void result) {
-				Window.alert("Operatør password opdateret");
+				Window.alert("Operator password updated");
 				passwordOld.setText("");
 				passwordNew.setText("");
 				passwordNewRepeat.setText("");				

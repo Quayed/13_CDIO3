@@ -47,7 +47,7 @@ public class LoginView extends Composite {
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO Auto-generated method stub
-				Window.alert("Operatør login ikke accepteret");
+				Window.alert("Operator login not accepted");
 			}
 
 			@Override
@@ -56,10 +56,10 @@ public class LoginView extends Composite {
 					Window.alert("Admin login ok");
 					loggedInEvent.adminLoggedIn();
 				} else if (result == 2) {
-					Window.alert("Operatør login ok");
+					Window.alert("Operator login ok");
 					loggedInEvent.operatorLoggedIn();
 				} else {
-					Window.alert("Forkerte loginoplysninger");
+					Window.alert("Wrong credentials");
 				}
 			}
 
