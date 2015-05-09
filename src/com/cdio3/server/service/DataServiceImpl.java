@@ -13,7 +13,7 @@ import com.cdio3.shared.FieldVerifier;
 public class DataServiceImpl extends RemoteServiceServlet implements DataService {
 
 	private static final long serialVersionUID = 1L;
-	private static int oprID;
+	private int oprID;
 	
 	@Override
 	public OperatorDTO createOperator(OperatorDTO operator) throws DALException {
@@ -105,7 +105,9 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 			System.out.println("Datalag's fejl!");
 			return 0;
 		}
-
+		
+		this.oprID = oprID;
+		
 		if (operator.getPassword().equals(password)) {
 			return 2;
 		} else
@@ -117,15 +119,18 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 		OperatorDAO dao = new OperatorDAO();
 		OperatorDTO operator = dao.getOperator(oprID);
 		
+		if(operator == null){
+			throw new DALException("");
+		}
 		
 		if(!operator.getPassword().equals(passwordOld)){
-			throw new DALException();
+			throw new DALException("Old password incorrect");
 		}
 		if(!FieldVerifier.isValidPassword(passwordNew)){
-			throw new DALException();
+			throw new DALException("Not a valid password");
 		}
 		if(!passwordNew.equals(passwordNewRepeat)){
-			throw new DALException();
+			throw new DALException("The password do not match");
 		}
 		
 		operator.setPassword(passwordNew);
