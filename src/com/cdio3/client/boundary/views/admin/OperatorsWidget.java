@@ -6,6 +6,9 @@ import com.cdio3.client.service.DataServiceAsync;
 import com.cdio3.shared.OperatorDTO;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyUpEvent;
+import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
@@ -14,13 +17,18 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
-
+import com.cdio3.shared.FieldVerifier;
+import com.google.gwt.dom.client.Document;
 public class OperatorsWidget extends Composite {
 	private FlexTable table;
 	private int editRow;
 	private Button cancelButton;
 	private DataServiceAsync service;
-
+	private boolean validName;
+	private boolean validCPR;
+	private boolean validIni;
+	private boolean validPassword;
+	private Button currentSubmitButton;
 	public OperatorsWidget(DataServiceAsync service) {
 		this.service = service;
 		table = new FlexTable();
@@ -83,9 +91,76 @@ public class OperatorsWidget extends Composite {
 				table.clearCell(editRow, i);
 				table.setWidget(editRow, i, editTextBox);
 			}
-
+			
+			final TextBox oprNameTextBox = (TextBox) table.getWidget(editRow, 1);
+			oprNameTextBox.addKeyUpHandler(new KeyUpHandler(){
+				@Override
+				public void onKeyUp(KeyUpEvent event) {
+					if(FieldVerifier.isValidName(oprNameTextBox.getText())){
+						oprNameTextBox.removeStyleName("invalidEntry");
+						validName = true;
+					} else{
+						oprNameTextBox.setStyleName("invalidEntry");
+						validName = false;
+					}
+					checkForm();
+				}
+			});
+			
+			
+			final TextBox oprIniTextBox = (TextBox) table.getWidget(editRow, 2);
+			oprIniTextBox.addKeyUpHandler(new KeyUpHandler(){
+				@Override
+				public void onKeyUp(KeyUpEvent event) {
+					if(FieldVerifier.isValidInitials(oprIniTextBox.getText())){
+						oprIniTextBox.removeStyleName("invalidEntry");
+						validIni = true;
+					} else{
+						oprIniTextBox.setStyleName("invalidEntry");
+						validIni = false;
+					}
+					checkForm();
+				}
+				
+			});
+			
+			final TextBox oprCPRTextBox = (TextBox) table.getWidget(editRow, 3);
+			oprCPRTextBox.addKeyUpHandler(new KeyUpHandler(){
+				@Override
+				public void onKeyUp(KeyUpEvent event) {
+					if(FieldVerifier.isValidCPR(oprCPRTextBox.getText())){
+						oprCPRTextBox.removeStyleName("invalidEntry");
+						validCPR = true;
+					} else{
+						oprCPRTextBox.setStyleName("invalidEntry");
+						validCPR = false;
+					}
+					checkForm();
+				}
+				
+			});
+			
+			final TextBox oprPasswordTextBox = (TextBox) table.getWidget(editRow, 4);
+			oprPasswordTextBox.addKeyUpHandler(new KeyUpHandler(){
+				@Override
+				public void onKeyUp(KeyUpEvent event) {
+					if(FieldVerifier.isValidPassword(oprPasswordTextBox.getText())){
+						oprPasswordTextBox.removeStyleName("invalidEntry");
+						validPassword = true;
+					} else{
+						oprPasswordTextBox.setStyleName("invalidEntry");
+						validPassword = false;
+					}
+					checkForm();
+				}
+			});
+			
+			
+			
 			Button submitButton = new Button("Submit");
+			currentSubmitButton = submitButton;
 			submitButton.addClickHandler(new SubmitClick());
+			checkForm();
 			table.clearCell(editRow, 5);
 			table.setWidget(editRow, 5, submitButton);
 
@@ -95,11 +170,14 @@ public class OperatorsWidget extends Composite {
 			cancelButton.addClickHandler(new CancelClick());
 			table.setWidget(editRow, 6, cancelButton);
 			
-			
+			KeyUpEvent.fireNativeEvent(Document.get().createKeyUpEvent(false, false, false, false, 65), oprNameTextBox);
+			KeyUpEvent.fireNativeEvent(Document.get().createKeyUpEvent(false, false, false, false, 65), oprIniTextBox);
+			KeyUpEvent.fireNativeEvent(Document.get().createKeyUpEvent(false, false, false, false, 65), oprCPRTextBox);
+			KeyUpEvent.fireNativeEvent(Document.get().createKeyUpEvent(false, false, false, false, 65), oprPasswordTextBox);
 
 		}
 	}
-
+	
 	private class SubmitClick implements ClickHandler {
 
 		@Override
@@ -178,6 +256,14 @@ public class OperatorsWidget extends Composite {
 			}
 		}
 		
+	}
+	
+	private void checkForm(){
+		if(validName && validIni && validCPR && validPassword){
+			currentSubmitButton.setEnabled(true);
+		} else{
+			currentSubmitButton.setEnabled(false);
+		}
 	}
 	
 }
