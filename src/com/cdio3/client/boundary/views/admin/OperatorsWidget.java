@@ -220,13 +220,9 @@ public class OperatorsWidget extends Composite {
 	
 	@UiHandler("submitButton")
 	void clickSubmit(ClickEvent event) {
-		int id = Integer.parseInt(((Label) table.getWidget(editRow, 0)).getText());
-		String name = ((TextBox) table.getWidget(editRow, 1)).getText();
-		String ini = ((TextBox) table.getWidget(editRow, 2)).getText();
-		String cpr = ((TextBox) table.getWidget(editRow, 3)).getText();
-		String password = ((TextBox) table.getWidget(editRow, 4)).getText();
+		int oprID = Integer.parseInt(((Label) table.getWidget(editRow, 0)).getText());
 
-		OperatorDTO operator = new OperatorDTO(id, name, ini, cpr, password);
+		OperatorDTO operator = new OperatorDTO(oprID, oprName.getText(), oprIni.getText(), oprCPR.getText(), oprPassword.getText());
 		service.updateOperator(operator, new AsyncCallback<Void>() {
 
 			@Override
@@ -255,7 +251,7 @@ public class OperatorsWidget extends Composite {
 				
 		table.getRowFormatter().setVisible(editRow+1, true);
 		table.getRowFormatter().setVisible(editRow, false);
-
+		table.removeRow(editRow);
 		editRow = -1;
 	}
 	
