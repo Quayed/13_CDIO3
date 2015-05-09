@@ -31,7 +31,7 @@ public class OperatorView extends AbstractContentView {
 	
 	private void weightAppView() {
 		setHeaderLabel("Weight App");
-		setView(new WeightAppWidget(service));
+		setView(new WeightApp());
 	}
 	
 	private void changePasswordView() {
