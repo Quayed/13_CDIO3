@@ -29,8 +29,7 @@ public class CreateWidget extends Composite {
 	@UiField TextBox iniTextBox;
 	@UiField TextBox cprTextBox;
 	@UiField Button submitCreateOperator;
-	
-	
+		
 	private boolean validName;
 	private boolean validCPR;
 	private boolean validIni;

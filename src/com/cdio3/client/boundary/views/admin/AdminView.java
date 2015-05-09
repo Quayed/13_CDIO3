@@ -11,7 +11,7 @@ public class AdminView extends AbstractContentView {
 	public AdminView(DataServiceAsync service) {
 		super();
 		this.service = service;
-		
+
 		operatorsView();
 
 		addNavItem("Operators", new ScheduledCommand() {
@@ -20,22 +20,22 @@ public class AdminView extends AbstractContentView {
 				operatorsView();
 			}
 		});
-	    addNavItem("Create Operator", new ScheduledCommand() {
+		addNavItem("Create Operator", new ScheduledCommand() {
 			@Override
 			public void execute() {
 				createView();
 			}
 		});
 	}
-	
+
 	private void operatorsView() {
 		setHeaderLabel("View Operators");
 		setView(new OperatorsWidget(service));
 	}
-	
-	private void createView(){
+
+	private void createView() {
 		setHeaderLabel("Create Operator");
 		setView(new CreateWidget(service));
 	}
-	
+
 }

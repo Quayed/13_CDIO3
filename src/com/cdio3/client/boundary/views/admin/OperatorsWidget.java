@@ -24,8 +24,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 public class OperatorsWidget extends Composite {
 	
-	interface OperatorsUiBinder extends UiBinder<Widget, OperatorsWidget> {
-	}
+	interface OperatorsUiBinder extends UiBinder<Widget, OperatorsWidget> {}
 
 	private static OperatorsUiBinder uiBinder = GWT.create(OperatorsUiBinder.class);
 	

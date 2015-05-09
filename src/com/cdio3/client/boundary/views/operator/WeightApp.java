@@ -17,8 +17,7 @@ public class WeightApp extends Composite implements HasText {
 
 	private static WeightAppUiBinder uiBinder = GWT.create(WeightAppUiBinder.class);
 
-	interface WeightAppUiBinder extends UiBinder<Widget, WeightApp> {
-	}
+	interface WeightAppUiBinder extends UiBinder<Widget, WeightApp> {}
 
 	public WeightApp() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -29,6 +28,7 @@ public class WeightApp extends Composite implements HasText {
 	@UiField Button submitButton;
 	
 	@UiHandler("submitButton")
+	
 	void handleClick(ClickEvent event){
 		try{
 			Window.alert("" + (Double.parseDouble(nettoTextBox.getText()) + Double.parseDouble(tareTextBox.getText())));
@@ -37,7 +37,6 @@ public class WeightApp extends Composite implements HasText {
 		}
 		
 	}
-	
 	
 	@Override
 	public String getText() {

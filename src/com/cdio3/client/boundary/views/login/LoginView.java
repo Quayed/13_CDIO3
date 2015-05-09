@@ -17,22 +17,16 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class LoginView extends Composite {
 
-	interface LoginUiBinder extends UiBinder<Widget, LoginView> {
-	}
+	interface LoginUiBinder extends UiBinder<Widget, LoginView> {}
 
 	private static LoginUiBinder uiBinder = GWT.create(LoginUiBinder.class);
 
 	private DataServiceAsync service;
 	private ILoggedInEvent loggedInEvent;
 
-	@UiField
-	TextBox userNameField;
-
-	@UiField
-	PasswordTextBox passwordField;
-
-	@UiField
-	Button loginButton;
+	@UiField TextBox userNameField;
+	@UiField PasswordTextBox passwordField;
+	@UiField Button loginButton;
 	
 	public LoginView(DataServiceAsync service, ILoggedInEvent loggedInEvent) {
 		this.service = service;
