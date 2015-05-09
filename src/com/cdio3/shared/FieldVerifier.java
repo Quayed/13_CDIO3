@@ -1,7 +1,11 @@
 package com.cdio3.shared;
 
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.google.gwt.regexp.shared.MatchResult;
+import com.google.gwt.regexp.shared.RegExp;
 
 /**
  * <p>
@@ -30,7 +34,8 @@ public class FieldVerifier
 	 * These variables define the limits and patterns that our input should conform to. 
 	 */
 	private static int INITIALS_MAX = 3;
-	private static Pattern CPR_PATTERN = Pattern.compile("\\d{6}-\\d{4}");
+	private static RegExp CPR_PATTERN= RegExp.compile("\\d{6}-\\d{4}");
+	private static final int PASSWORD_MIN = 6;
 	
 	/**
 	 * Verifies that the specified name is valid for our service.
@@ -60,8 +65,8 @@ public class FieldVerifier
 	{
 		if(cpr == null)
 			return false;
-		Matcher m = CPR_PATTERN.matcher(cpr);
-		return m.matches();
+		MatchResult m = CPR_PATTERN.exec(cpr);
+		return m != null && cpr.length() == 11;
 	}
 	/**
 	 * checks that the initials is between 2 and 3 chars long
@@ -72,10 +77,44 @@ public class FieldVerifier
 	{
 		if(init == null)
 			return false;
-		return init.length() > INITIALS_MAX;
+		return init.length() < INITIALS_MAX;
 	}
 	
 	public static boolean isValidPassword(String password){
-		return PasswordGenerator.checkPassword(password);
+		//TODO: call to checkContainsData()
+		boolean[] check = checkPW(password);
+		
+		int passedCategories = 0;
+		for (int i = 0; i < 4; i++)
+			if(check[i])
+				passedCategories++;
+		
+		if(passedCategories > 2 && check[4])
+			return true;
+		
+		return false;
+	}
+	
+	private static boolean[] checkPW(String pw)
+	{
+		boolean[] results = new boolean[5];
+		RegExp[] patterns = new RegExp[4];
+		
+		//make a pattern for each category
+		patterns[0] = RegExp.compile(".*\\d+.*");
+		patterns[1] = RegExp.compile(".*[a-z]+.*");
+		patterns[2] = RegExp.compile(".*[A-Z]+.*");
+		patterns[3] = RegExp.compile(".*[\\+\\-_?=!\\.]+.*");
+		
+		//check against patterns and store results of check
+		for (int i = 0; i < patterns.length; i++)
+		{
+			MatchResult m = patterns[i].exec(pw);
+			results[i] = m != null;
+		}
+		//check length of pw
+		results[4] = pw.length() >= PASSWORD_MIN;
+		
+		return results;
 	}
 }

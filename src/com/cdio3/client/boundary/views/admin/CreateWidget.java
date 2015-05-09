@@ -94,14 +94,14 @@ public class CreateWidget extends Composite {
 			}
 		});
 
-	/*	oprNameTextBox.addKeyUpHandler(new KeyUpHandler(){
+		oprNameTextBox.addKeyUpHandler(new KeyUpHandler(){
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
 				if(FieldVerifier.isValidName(oprNameTextBox.getText())){
-					oprNameTextBox.removeStyleName("gwt-TextBox-invalidEntry");
+					oprNameTextBox.removeStyleName("invalidEntry");
 					validName = true;
 				} else{
-					oprNameTextBox.setStyleName("gwt-TextBox-invalidEntry");
+					oprNameTextBox.setStyleName("invalidEntry");
 					validName = false;
 				}
 				checkForm();
@@ -113,10 +113,10 @@ public class CreateWidget extends Composite {
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
 				if(FieldVerifier.isValidInitials(iniTextBox.getText())){
-					iniTextBox.removeStyleName("gwt-TextBox-invalidEntry");
+					iniTextBox.removeStyleName("invalidEntry");
 					validIni = true;
 				} else{
-					iniTextBox.setStyleName("gwt-TextBox-invalidEntry");
+					iniTextBox.setStyleName("invalidEntry");
 					validIni = false;
 				}
 				checkForm();
@@ -127,15 +127,15 @@ public class CreateWidget extends Composite {
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
 				if(FieldVerifier.isValidCPR(cprTextBox.getText())){
-					cprTextBox.removeStyleName("gwt-TextBox-invalidEntry");
-					validName = true;
+					cprTextBox.removeStyleName("invalidEntry");
+					validCPR = true;
 				} else{
-					cprTextBox.setStyleName("gwt-TextBox-invalidEntry");
-					validName = false;
+					cprTextBox.setStyleName("invalidEntry");
+					validCPR = false;
 				}
 				checkForm();
 			}
-		});*/
+		});
 		
 		table.setWidget(3, 0, submitCreateOperator);
 		view.add(table);
