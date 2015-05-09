@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+  <g:HTMLPanel>
+  	<br />Operator name<br />
+  	<g:TextBox ui:field="oprNameTextBox"></g:TextBox>
+  	<br />Ini<br />
+  	<g:TextBox ui:field="iniTextBox"></g:TextBox>
+  	<br />CPR<br />
+  	<g:TextBox ui:field="cprTextBox"></g:TextBox>
+  	<br /><br />
+  	<g:Button ui:field="submitCreateOperator">Create Operator</g:Button>
+  </g:HTMLPanel>
+</ui:UiBinder>
