@@ -18,4 +18,6 @@ public interface DataService extends RemoteService {
 	void deleteOperator(int id);
 	
 	Integer login(String userID, String password);
+
+	void changePassword(String passwordOld, String passwordNew, String passwordNewRepeat) throws DALException;
 }

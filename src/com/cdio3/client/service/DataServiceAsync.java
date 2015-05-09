@@ -15,4 +15,6 @@ public interface DataServiceAsync {
 	void deleteOperator(int id, AsyncCallback<Void> callback);
 	
 	void login(String userName, String password, AsyncCallback<Integer> callback);
+	
+	void changePassword(String passwordOld, String passwordNew, String passwordNewRepeat, AsyncCallback<Void> callback);
 }
