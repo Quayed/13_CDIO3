@@ -72,7 +72,7 @@ public class CreateWidget extends Composite {
 			oprNameTextBox.removeStyleName("invalidEntry");
 			validName = true;
 		} else{
-			oprNameTextBox.setStyleName("invalidEntry");
+			oprNameTextBox.addStyleName("invalidEntry");
 			validName = false;
 		}
 		checkForm();
@@ -84,7 +84,7 @@ public class CreateWidget extends Composite {
 			iniTextBox.removeStyleName("invalidEntry");
 			validIni = true;
 		} else{
-			iniTextBox.setStyleName("invalidEntry");
+			iniTextBox.addStyleName("invalidEntry");
 			validIni = false;
 		}
 		checkForm();
@@ -96,7 +96,7 @@ public class CreateWidget extends Composite {
 			cprTextBox.removeStyleName("invalidEntry");
 			validCPR = true;
 		} else{
-			cprTextBox.setStyleName("invalidEntry");
+			cprTextBox.addStyleName("invalidEntry");
 			validCPR = false;
 		}
 		checkForm();
