@@ -1,7 +1,6 @@
 package com.cdio3.client.boundary.views.operator;
 
 import com.cdio3.client.service.DataServiceAsync;
-import com.cdio3.shared.DALException;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyUpEvent;
@@ -43,12 +42,7 @@ public class ChangePasswordWidget extends Composite {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				if (caught instanceof DALException) {
-					Window.alert("Error: "+caught.getMessage());
-				}
-				else {
-					Window.alert("I give up");
-				}
+				Window.alert(caught.getMessage());
 			}
 
 			@Override

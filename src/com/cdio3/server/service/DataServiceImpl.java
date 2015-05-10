@@ -4,11 +4,12 @@ import java.util.List;
 
 import com.cdio3.client.service.DataService;
 import com.cdio3.server.dal.OperatorDAO;
-import com.cdio3.shared.DALException;
+import com.cdio3.server.dal.DALException;
 import com.cdio3.shared.OperatorDTO;
 import com.cdio3.shared.PasswordGenerator;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.cdio3.shared.FieldVerifier;
+import com.cdio3.shared.ServiceException;
 
 public class DataServiceImpl extends RemoteServiceServlet implements DataService {
 
@@ -16,58 +17,69 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 	private int oprID;
 	
 	@Override
-	public OperatorDTO createOperator(OperatorDTO operator) throws DALException {
+	public OperatorDTO createOperator(OperatorDTO operator) throws ServiceException {
 		if (FieldVerifier.isValidCPR(operator.getCpr()) && FieldVerifier.isValidName(operator.getOprName())
 				&& FieldVerifier.isValidInitials(operator.getIni())) {
 			OperatorDAO dao = new OperatorDAO();
 
 			operator.setPassword(PasswordGenerator.generatePassword());
 
-			dao.createOperator(operator);
+			try {
+				dao.createOperator(operator);
+			} catch (DALException e) {
+				throw new ServiceException("Database Error");
+			}
 
-		} else {
-			// Do some error handling
+		} else if(!FieldVerifier.isValidCPR(operator.getCpr())){
+			throw new ServiceException("Ugyldigt CPR");
+		} else if(!FieldVerifier.isValidInitials(operator.getIni())){
+			throw new ServiceException("Ugyldige initialer");
+		} else if(!FieldVerifier.isValidName(operator.getOprName())){
+			throw new ServiceException("Ugyldigt navn");
 		}
 		return operator;
 	}
 
 	@Override
-	public List<OperatorDTO> getAllOperators() {
+	public List<OperatorDTO> getAllOperators() throws ServiceException {
 		OperatorDAO dao = new OperatorDAO();
 		List<OperatorDTO> operators = null;
 		try {
 			operators = dao.getOperatorList();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ServiceException("Database error");
 		}
 		return operators;
 	}
 
 	@Override
-	public void updateOperator(OperatorDTO operator)  {
+	public void updateOperator(OperatorDTO operator) throws ServiceException {
 		if (FieldVerifier.isValidCPR(operator.getCpr()) && FieldVerifier.isValidName(operator.getOprName())
 				&& FieldVerifier.isValidInitials(operator.getIni()) && FieldVerifier.isValidPassword(operator.getPassword())) {
 			OperatorDAO dao = new OperatorDAO();
 			try {
 				dao.updateOperator(operator);
 			} catch (DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new ServiceException("Database error");
 			}
-		} else {
-			// Do some error handling.
+		} else if(!FieldVerifier.isValidCPR(operator.getCpr())){
+			throw new ServiceException("Ugyldigt CPR");
+		} else if(!FieldVerifier.isValidInitials(operator.getIni())){
+			throw new ServiceException("Ugyldige initialer");
+		} else if(!FieldVerifier.isValidName(operator.getOprName())){
+			throw new ServiceException("Ugyldigt navn");
+		} else if(!FieldVerifier.isValidPassword(operator.getPassword())){
+			throw new ServiceException("Ugyldigt password");
 		}
 	}
 
 	@Override
-	public void deleteOperator(int id) {
+	public void deleteOperator(int id) throws ServiceException{
 		OperatorDAO dao = new OperatorDAO();
 		try {
 			dao.deleteOperator(id);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ServiceException("Database error");
 		}
 	}
 
@@ -76,15 +88,14 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 	 * @param 
 	 * @return int representing; 0 = wrong info , 1 = admin , 2 = user
 	 */
-	public Integer login(String userID, String password) {
+	public Integer login(String userID, String password) throws ServiceException {
 		OperatorDAO dao = new OperatorDAO();
 		int oprID;
 		OperatorDTO operator;
 		try {
 			oprID = Integer.parseInt(userID);
 		} catch (NumberFormatException e) {
-			System.out.println("Ikke et gyldigt ID");
-			return 0;
+			throw new ServiceException("Ugyldigt ID");
 		}
 
 		// is admin
@@ -115,26 +126,35 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 	}
 
 	@Override
-	public void changePassword(String passwordOld, String passwordNew, String passwordNewRepeat) throws DALException {
+	public void changePassword(String passwordOld, String passwordNew, String passwordNewRepeat) throws ServiceException {
 		OperatorDAO dao = new OperatorDAO();
-		OperatorDTO operator = dao.getOperator(oprID);
+		OperatorDTO operator;
+		try {
+			operator = dao.getOperator(oprID);
+		} catch (DALException e) {
+			throw new ServiceException("Database error");
+		}
 		
 		if(operator == null){
-			throw new DALException("");
+			throw new ServiceException("");
 		}
 		
 		if(!operator.getPassword().equals(passwordOld)){
-			throw new DALException("Old password incorrect");
+			throw new ServiceException("Old password incorrect");
 		}
 		if(!FieldVerifier.isValidPassword(passwordNew)){
-			throw new DALException("Not a valid password");
+			throw new ServiceException("Not a valid password");
 		}
 		if(!passwordNew.equals(passwordNewRepeat)){
-			throw new DALException("The password do not match");
+			throw new ServiceException("The password do not match");
 		}
 		
 		operator.setPassword(passwordNew);
-		dao.updateOperator(operator);
+		try {
+			dao.updateOperator(operator);
+		} catch (DALException e) {
+			throw new ServiceException("Database error");
+		}
 	}
 	
 	public double calculateNetto(double brutto, double tare){

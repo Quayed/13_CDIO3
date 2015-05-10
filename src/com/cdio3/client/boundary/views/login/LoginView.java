@@ -40,8 +40,7 @@ public class LoginView extends Composite {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
-				Window.alert("Operator login not accepted");
+				Window.alert(caught.getMessage());
 			}
 
 			@Override

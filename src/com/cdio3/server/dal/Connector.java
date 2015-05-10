@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.cdio3.shared.DALException;
+import com.cdio3.server.dal.DALException;
 
 public class Connector {
 

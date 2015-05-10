@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cdio3.shared.DALException;
+import com.cdio3.server.dal.DALException;
 import com.cdio3.shared.OperatorDTO;
 
 public class OperatorDAO implements IOperatorDAO {

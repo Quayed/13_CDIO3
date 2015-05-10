@@ -147,7 +147,7 @@ public class OperatorsWidget extends Composite {
 	
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert("Something went wrong");
+						Window.alert(caught.getMessage());
 					}
 	
 					@Override
@@ -227,8 +227,7 @@ public class OperatorsWidget extends Composite {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
-				Window.alert("Operatøren blev IKKE oprettet, der kunne ikke komme forbindelse til din database");
+				Window.alert(caught.getMessage());
 			}
 
 			@Override

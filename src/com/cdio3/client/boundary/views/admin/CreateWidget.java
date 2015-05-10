@@ -1,7 +1,6 @@
 package com.cdio3.client.boundary.views.admin;
 
 import com.cdio3.client.service.DataServiceAsync;
-import com.cdio3.shared.DALException;
 import com.cdio3.shared.FieldVerifier;
 import com.cdio3.shared.OperatorDTO;
 import com.google.gwt.core.client.GWT;
@@ -46,12 +45,7 @@ public class CreateWidget extends Composite {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				if (caught instanceof DALException) {
-					Window.alert("Kunne ikke forbinde til databasen.");
-				}
-				else {
-					Window.alert("I give up");
-				}
+				Window.alert(caught.getMessage());
 			}
 
 			@Override
