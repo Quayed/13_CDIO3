@@ -176,7 +176,7 @@ public class OperatorsWidget extends Composite {
 			oprName.removeStyleName("invalidEntry");
 			validName = true;
 		} else{
-			oprName.setStyleName("invalidEntry");
+			oprName.addStyleName("invalidEntry");
 			validName = false;
 		}
 		checkForm();
@@ -188,7 +188,7 @@ public class OperatorsWidget extends Composite {
 			oprIni.removeStyleName("invalidEntry");
 			validIni = true;
 		} else{
-			oprIni.setStyleName("invalidEntry");
+			oprIni.addStyleName("invalidEntry");
 			validIni = false;
 		}
 		checkForm();
@@ -200,7 +200,7 @@ public class OperatorsWidget extends Composite {
 			oprCPR.removeStyleName("invalidEntry");
 			validCPR = true;
 		} else{
-			oprCPR.setStyleName("invalidEntry");
+			oprCPR.addStyleName("invalidEntry");
 			validCPR = false;
 		}
 		checkForm();
@@ -212,7 +212,7 @@ public class OperatorsWidget extends Composite {
 			oprPassword.removeStyleName("invalidEntry");
 			validPassword = true;
 		} else{
-			oprPassword.setStyleName("invalidEntry");
+			oprPassword.addStyleName("invalidEntry");
 			validPassword = false;
 		}
 		checkForm();
