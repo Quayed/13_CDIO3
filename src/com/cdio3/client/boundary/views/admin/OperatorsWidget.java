@@ -232,7 +232,7 @@ public class OperatorsWidget extends Composite {
 
 			@Override
 			public void onSuccess(Void result) {
-				Window.alert("Operatøren er blevet opdateret");
+				Window.alert("Operator updated");
 				
 				((Label) table.getWidget(editRow+1, 1)).setText(oprName.getText());
 				((Label) table.getWidget(editRow+1, 2)).setText(oprIni.getText());
