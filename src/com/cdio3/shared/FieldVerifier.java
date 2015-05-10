@@ -32,12 +32,9 @@ public class FieldVerifier
 	/**
 	 * These variables define the limits and patterns that our input should conform to. 
 	 */
-	private static final int NAME_MIN = 2;
-	private static final int NAME_MAX = 20;
-	
-	private static final int INI_MIN = 2;
-	private static final int INI_MAX = 3;
-	
+
+	private static final RegExp NAME_PATTERN = RegExp.compile("^[a-zA-ZæøåÆØÅ -]{2,20}$");
+	private static final RegExp INI_PATTERN = RegExp.compile("^[a-zA-ZæøåÆØÅ]{2,3}$");
 	private static final RegExp CPR_PATTERN = RegExp.compile("^\\d{10}$");
 	
 	private static final int PASSWORD_MIN = 7;
@@ -58,7 +55,7 @@ public class FieldVerifier
 	{
 		if (name == null)
 			return false;
-		return name.length() >= NAME_MIN && name.length() <= NAME_MAX;
+		return NAME_PATTERN.exec(name) != null;
 	}
 	
 	/**
@@ -83,7 +80,8 @@ public class FieldVerifier
 	{
 		if(init == null)
 			return false;
-		return init.length() >= INI_MIN && init.length() <= INI_MAX;
+		
+		return INI_PATTERN.exec(init) != null;
 	}
 	
 	public static boolean isValidPassword(String password){
