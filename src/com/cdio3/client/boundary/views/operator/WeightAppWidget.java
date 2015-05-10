@@ -7,6 +7,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -16,11 +17,15 @@ import com.google.gwt.user.client.ui.Widget;
 import com.cdio3.client.service.DataServiceAsync;
 
 public class WeightAppWidget extends Composite implements HasText {
-
+	
+	interface WeightAppWidgetUiBinder extends UiBinder<Widget, WeightAppWidget> {}
+	
 	private static WeightAppWidgetUiBinder uiBinder = GWT.create(WeightAppWidgetUiBinder.class);
 
-	interface WeightAppWidgetUiBinder extends UiBinder<Widget, WeightAppWidget> {}
+	
 	private DataServiceAsync service;
+	private boolean bruttoIsNumber;
+	private boolean tareIsNumber;
 	public WeightAppWidget(DataServiceAsync service) {
 		this.service = service;
 		initWidget(uiBinder.createAndBindUi(this));
@@ -31,7 +36,6 @@ public class WeightAppWidget extends Composite implements HasText {
 	@UiField Button submitButton;
 	
 	@UiHandler("submitButton")
-	
 	void handleClick(ClickEvent event){
 		double brutto;
 		double tare;
@@ -55,6 +59,41 @@ public class WeightAppWidget extends Composite implements HasText {
 			Window.alert("Der skal indtastes et tal i begge bokse (Der skal benyttes \".\" som decimal tegn)");
 		}
 		
+	}
+	
+	@UiHandler("bruttoTextBox")
+	void keyUpBruttoBox(KeyUpEvent e){
+		try{
+			Double.parseDouble(bruttoTextBox.getText());
+			bruttoTextBox.removeStyleName("invalidEntry");
+			bruttoIsNumber = true;
+		} catch(NumberFormatException error){
+			bruttoTextBox.addStyleName("invalidEntry");
+			bruttoIsNumber = false;
+		}
+		checkForm();
+	}
+	
+	@UiHandler("tareTextBox")
+	void keyUpTareBox(KeyUpEvent e){
+		try{
+			Double.parseDouble(tareTextBox.getText());
+			tareTextBox.removeStyleName("invalidEntry");
+			tareIsNumber = true;
+		} catch(NumberFormatException error){
+			tareTextBox.addStyleName("invalidEntry");
+			tareIsNumber = false;
+		}
+		checkForm();
+	}
+	
+	
+	private void checkForm(){
+		if(bruttoIsNumber && tareIsNumber){
+			submitButton.setEnabled(true);
+		} else{
+			submitButton.setEnabled(false);
+		}
 	}
 	
 	@Override
