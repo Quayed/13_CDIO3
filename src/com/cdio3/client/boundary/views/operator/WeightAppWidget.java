@@ -15,13 +15,13 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.cdio3.client.service.DataServiceAsync;
 
-public class WeightApp extends Composite implements HasText {
+public class WeightAppWidget extends Composite implements HasText {
 
-	private static WeightAppUiBinder uiBinder = GWT.create(WeightAppUiBinder.class);
+	private static WeightAppWidgetUiBinder uiBinder = GWT.create(WeightAppWidgetUiBinder.class);
 
-	interface WeightAppUiBinder extends UiBinder<Widget, WeightApp> {}
+	interface WeightAppWidgetUiBinder extends UiBinder<Widget, WeightAppWidget> {}
 	private DataServiceAsync service;
-	public WeightApp(DataServiceAsync service) {
+	public WeightAppWidget(DataServiceAsync service) {
 		this.service = service;
 		initWidget(uiBinder.createAndBindUi(this));
 	}
