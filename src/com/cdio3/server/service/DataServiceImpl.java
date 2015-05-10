@@ -3,6 +3,7 @@ package com.cdio3.server.service;
 import java.util.List;
 
 import com.cdio3.client.service.DataService;
+import com.cdio3.server.dal.IOperatorDAO;
 import com.cdio3.server.dal.OperatorDAO;
 import com.cdio3.server.dal.DALException;
 import com.cdio3.shared.OperatorDTO;
@@ -42,7 +43,7 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 
 	@Override
 	public List<OperatorDTO> getAllOperators() throws ServiceException {
-		OperatorDAO dao = new OperatorDAO();
+		IOperatorDAO dao = new OperatorDAO();
 		List<OperatorDTO> operators = null;
 		try {
 			operators = dao.getOperatorList();

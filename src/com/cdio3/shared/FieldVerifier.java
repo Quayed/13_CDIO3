@@ -1,9 +1,6 @@
 package com.cdio3.shared;
 
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.google.gwt.regexp.shared.MatchResult;
 import com.google.gwt.regexp.shared.RegExp;
 
@@ -29,13 +26,22 @@ import com.google.gwt.regexp.shared.RegExp;
  */
 public class FieldVerifier
 {
+
+	
 	//The regex tester I use for all my regex: https://regex101.com/ -Magnus
 	/**
 	 * These variables define the limits and patterns that our input should conform to. 
 	 */
-	private static int INITIALS_MAX = 3;
-	private static RegExp CPR_PATTERN= RegExp.compile("\\d{6}-\\d{4}");
-	private static final int PASSWORD_MIN = 6;
+	private static final int NAME_MIN = 2;
+	private static final int NAME_MAX = 20;
+	
+	private static final int INI_MIN = 2;
+	private static final int INI_MAX = 3;
+	
+	private static final RegExp CPR_PATTERN = RegExp.compile("^\\d{10}$");
+	
+	private static final int PASSWORD_MIN = 7;
+	private static final int PASSWORD_MAX = 8;
 	
 	/**
 	 * Verifies that the specified name is valid for our service.
@@ -52,7 +58,7 @@ public class FieldVerifier
 	{
 		if (name == null)
 			return false;
-		return name.length() > 3;
+		return name.length() >= NAME_MIN && name.length() <= NAME_MAX;
 	}
 	
 	/**
@@ -66,7 +72,7 @@ public class FieldVerifier
 		if(cpr == null)
 			return false;
 		MatchResult m = CPR_PATTERN.exec(cpr);
-		return m != null && cpr.length() == 11;
+		return m != null;
 	}
 	/**
 	 * checks that the initials is between 2 and 3 chars long
@@ -77,7 +83,7 @@ public class FieldVerifier
 	{
 		if(init == null)
 			return false;
-		return init.length() < INITIALS_MAX;
+		return init.length() >= INI_MIN && init.length() <= INI_MAX;
 	}
 	
 	public static boolean isValidPassword(String password){
@@ -113,7 +119,7 @@ public class FieldVerifier
 			results[i] = m != null;
 		}
 		//check length of pw
-		results[4] = pw.length() >= PASSWORD_MIN;
+		results[4] = pw.length() >= PASSWORD_MIN && pw.length() <= PASSWORD_MAX;
 		
 		return results;
 	}
