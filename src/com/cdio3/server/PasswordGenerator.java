@@ -43,26 +43,6 @@ public class PasswordGenerator
 		
 		return false;
 	}
-	/**
-	 * @deprecated Not Yet Implemented!!
-	 * @param pass the password to check
-	 * @return an array of Strings telling the user what's wrong with the password.
-	 */
-	@Deprecated 
-	public static String[] getPasswordErrors(String pass)
-	{
-		//TODO: logic to return what's wrong with the password.
-		//TODO: call checkContainsData()
-		if(checkPassword(pass))
-			return null;
-		String[] returnMessages = {"Password is missing a Number (0-9)","Password is missing a small letter (a-z)","Password is missing a Capital letter (A-Z)","",""};
-		
-		
-		boolean[] check = checkPW(pass);
-		//logic here to return apropriate string(s) for the errors
-		
-		return null;
-	}
 	
 	/**
 	 * checks if the password matches the requirements, returns a boolean array
@@ -125,9 +105,4 @@ public class PasswordGenerator
 		return pass;
 	}
 	
-	private boolean checkContainsData(String pass)
-	{
-		//TODO: check if the password contains username, first-name or last-name.
-		return false;
-	}
 }
