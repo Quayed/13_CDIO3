@@ -6,10 +6,10 @@
   	<div class="login">
 	  	<h2>Login</h2>
 	  	<label>Username</label>
-	  	<g:TextBox ui:field="userNameField" value="10" />
+	  	<g:TextBox ui:field="userNameField" value="" />
 	  	
 	  	<label>Password</label>
-	  	<g:PasswordTextBox ui:field="passwordField" value="02324it!" />
+	  	<g:PasswordTextBox ui:field="passwordField" value="" />
 	  	
 	    <g:Button ui:field='loginButton'>Login</g:Button>
     </div>
