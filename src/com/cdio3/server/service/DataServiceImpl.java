@@ -7,7 +7,7 @@ import com.cdio3.server.dal.IOperatorDAO;
 import com.cdio3.server.dal.OperatorDAO;
 import com.cdio3.server.dal.DALException;
 import com.cdio3.shared.OperatorDTO;
-import com.cdio3.shared.PasswordGenerator;
+import com.cdio3.server.PasswordGenerator;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.cdio3.shared.FieldVerifier;
 import com.cdio3.shared.ServiceException;
