@@ -7,8 +7,8 @@
 	}
 	</ui:style>
 	<g:HTMLPanel>
-		<label>Netto:</label>
-		<g:TextBox ui:field="nettoTextBox"></g:TextBox>
+		<label>Brutto:</label>
+		<g:TextBox ui:field="bruttoTextBox"></g:TextBox>
 		<lable>Tare:</lable>
 		<g:TextBox ui:field="tareTextBox"></g:TextBox>
 		<g:Button ui:field="submitButton">Get Brutto</g:Button>

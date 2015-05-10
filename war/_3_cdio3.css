@@ -108,5 +108,5 @@ table.create-operator tr td{
 }
 
 .invalidEntry{
-	border-color: red;
+	border-color: red !important;
 }

@@ -20,4 +20,6 @@ public interface DataService extends RemoteService {
 	Integer login(String userID, String password);
 
 	void changePassword(String passwordOld, String passwordNew, String passwordNewRepeat) throws DALException;
+	
+	double calculateNetto(double brutto, double tare);
 }

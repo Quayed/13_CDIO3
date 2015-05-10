@@ -17,4 +17,6 @@ public interface DataServiceAsync {
 	void login(String userName, String password, AsyncCallback<Integer> callback);
 	
 	void changePassword(String passwordOld, String passwordNew, String passwordNewRepeat, AsyncCallback<Void> callback);
+	
+	void calculateNetto(double brutto, double tare, AsyncCallback<Double> callback);
 }

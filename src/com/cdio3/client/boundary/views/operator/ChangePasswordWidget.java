@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.Widget;
+import com.cdio3.shared.FieldVerifier;
 
 public class ChangePasswordWidget extends Composite {
 
@@ -22,7 +23,8 @@ public class ChangePasswordWidget extends Composite {
 	private static ChangePasswordUiBinder uiBinder = GWT.create(ChangePasswordUiBinder.class);
 	
 	private DataServiceAsync service;
-	
+	private boolean validNewPassword;
+	private boolean samePassword;
 	@UiField PasswordTextBox passwordOld;
 	@UiField PasswordTextBox passwordNew;
 	@UiField PasswordTextBox passwordNewRepeat;
@@ -66,17 +68,33 @@ public class ChangePasswordWidget extends Composite {
 	}
 
 	@UiHandler("passwordNew")
-	void keyUpIni(KeyUpEvent e) {
+	void keyUpNewPassword(KeyUpEvent e) {
+		if(FieldVerifier.isValidPassword(passwordNew.getText())){
+			validNewPassword = true;
+			passwordNew.removeStyleName("invalidEntry");
+		} else {
+			validNewPassword = false;
+			passwordNew.addStyleName("invalidEntry");
+		}
 		checkForm();
 	}
 	
 	@UiHandler("passwordNewRepeat")
-	void keyUpCpr(KeyUpEvent e) {
+	void keyUpNewPasswordRepeat (KeyUpEvent e) {
+		if(passwordNewRepeat.getText().equals(passwordNew.getText()) && validNewPassword){
+			samePassword = true;
+			passwordNew.removeStyleName("invalidEntry");
+			passwordNewRepeat.removeStyleName("invalidEntry");
+		} else{
+			samePassword = false;
+			passwordNew.addStyleName("invalidEntry");
+			passwordNewRepeat.addStyleName("invalidEntry");
+		}
 		checkForm();
 	}
 
 	private void checkForm(){
-		if (true){
+		if (samePassword && validNewPassword){
 			submitButton.setEnabled(true);
 		} else{
 			submitButton.setEnabled(false);

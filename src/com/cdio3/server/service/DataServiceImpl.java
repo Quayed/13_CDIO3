@@ -137,5 +137,7 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 		dao.updateOperator(operator);
 	}
 	
-
+	public double calculateNetto(double brutto, double tare){
+		return brutto - tare;
+	}
 }
